@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="MediCycle promotes responsible medicine handling, medicine-wastage awareness and safe disposal guidance.">
+
+    <meta name="theme-color" content="#f5f6ee">
+
+    <title>MediCycle | Every Medicine Matters</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* MEDICYCLE BRAND LOGO */
+
+        .mc-brand {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .mc-logo {
+            width: 260px;
+            height: 78px;
+            display: block;
+        }
+
+        .mc-footer .mc-logo {
+            width: 220px;
+            height: 68px;
+        }
+
+        .mc-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .mc-logo {
+                width: 190px;
+                height: 58px;
+            }
+
+            .mc-footer .mc-logo {
+                width: 175px;
+                height: 55px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mc-logo {
+                width: 155px;
+                height: 48px;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="mc-home">
+
+    <!-- HEADER / NAVIGATION -->
+
+    <header class="mc-nav">
+
+        <a class="mc-brand" href="/index.html" aria-label="MediCycle Home">
+
+            <svg class="mc-logo"
+                viewBox="0 0 300 90"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="MediCycle">
+
+                <rect width="300" height="90" rx="18" fill="#064E46"/>
+
+                <circle cx="45" cy="45" r="32" fill="#B5F36B"/>
+
+                <rect x="38" y="24" width="14" height="42" fill="#064E46"/>
+                <rect x="24" y="38" width="42" height="14" fill="#064E46"/>
+
+                <text x="88" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#FFFFFF">Medi</text>
+
+                <text x="158" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#B5F36B">Cycle</text>
+
+            </svg>
+
+        </a>
+
+
+        <button
+            class="mc-menu"
+            id="menuButton"
+            aria-label="Toggle navigation"
+            aria-expanded="false">
+
+            ☰
+
+        </button>
+
+
+        <nav id="navigation">
+
+            <a class="active" href="/index.html">Home</a>
+
+            <a href="/about.html">About</a>
+
+            <a href="/safety.html">Safety Guide</a>
+
+            <a href="/centres.html">Centres</a>
+
+            <a href="/login.html">Donor Login</a>
+
+        </nav>
+
+
+        <a class="mc-nav-cta" href="/submit-medicine.html">
+            Submit a Request ↗
+        </a>
+
+    </header>
+
+
+    <main>
+
+        <!-- HERO SECTION -->
+
+        <section class="mc-hero">
+
+            <div class="mc-hero-photo"></div>
+
+            <div class="mc-hero-shade"></div>
+
+            <div class="mc-hero-copy">
+
+                <span class="mc-eyebrow">
+                    ♧ RESPONSIBLE MEDICINE MANAGEMENT
+                </span>
+
+                <h1>
+                    Every medicine<br>
+                    matters.
+                    <em>Every action<br>can make a difference.</em>
+                </h1>
+
+                <p>
+                    Unused medicines deserve responsible attention.
+                    Help reduce medicine wastage, learn safer disposal
+                    habits and connect with participating collection services.
+                </p>
+
+                <div class="mc-actions">
+
+                    <a class="mc-btn" href="/submit-medicine.html">
+                        Submit Medicine Details ↗
+                    </a>
+
+                    <a class="mc-btn ghost" href="/centres.html">
+                        Explore Centres
+                    </a>
+
+                </div>
+
+                <div class="mc-proof">
+
+                    ✓ Awareness first &nbsp; · &nbsp;
+                    ✓ Responsible handling &nbsp; · &nbsp;
+                    ✓ Community care
+
+                </div>
+
+            </div>
+
+
+            <aside class="mc-float">
+
+                <span class="mc-float-icon">✚</span>
+
+                <small>THE MEDICYCLE INITIATIVE</small>
+
+                <h3>
+                    Care for people.<br>
+                    Care for our planet.
+                </h3>
+
+                <p>
+                    Learn what to do with medicines you no longer need.
+                </p>
+
+                <a href="/safety.html">
+                    Read the safety guide →
+                </a>
+
+            </aside>
+
+        </section>
+
+
+        <!-- HIGHLIGHTS SECTION -->
+
+        <section class="mc-highlights">
+
+            <div class="mc-highlight-photo">
+
+                <img
+                    src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=900&q=85"
+                    alt="Medicine tablets and healthcare supplies"
+                    loading="lazy">
+
+            </div>
+
+
+            <article class="mc-highlight-card">
+
+                <span class="mc-icon">♡</span>
+
+                <h2>
+                    Compassion-led<br>
+                    community awareness
+                </h2>
+
+                <p>
+                    We bring attention to medicine affordability and
+                    the importance of safe, responsible medicine management.
+                </p>
+
+            </article>
+
+
+            <article class="mc-highlight-card">
+
+                <span class="mc-icon">♻</span>
+
+                <h2>
+                    Reduce medicine<br>
+                    wastage
+                </h2>
+
+                <p>
+                    Learn why medicines should never be flushed or
+                    casually thrown into household waste.
+                </p>
+
+            </article>
+
+
+            <article class="mc-highlight-card">
+
+                <span class="mc-icon">⌖</span>
+
+                <h2>
+                    Find helpful<br>
+                    local guidance
+                </h2>
+
+                <p>
+                    Explore participating collection and disposal
+                    services listed on our centres page.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- HOW IT WORKS SECTION -->
+
+        <section class="mc-section">
+
+            <div class="mc-section-head">
+
+                <div>
+
+                    <span class="mc-kicker">
+                        HOW IT WORKS
+                    </span>
+
+                    <h2>
+                        A simple path to<br>
+                        <em>responsible action.</em>
+                    </h2>
+
+                </div>
+
+                <p>
+                    MediCycle helps you understand the next responsible step.
+                    A submitted request is reviewed; it is not an automatic
+                    acceptance or redistribution of medicines.
+                </p>
+
+            </div>
+
+
+            <div class="mc-steps">
+
+                <article>
+
+                    <b>01</b>
+
+                    <div class="mc-step-icon">▤</div>
+
+                    <h3>Share the details</h3>
+
+                    <p>
+                        Tell us about the unused medicine through the request form.
+                    </p>
+
+                </article>
+
+
+                <article>
+
+                    <b>02</b>
+
+                    <div class="mc-step-icon">⌕</div>
+
+                    <h3>Request review</h3>
+
+                    <p>
+                        The project team reviews the information and checks
+                        available guidance.
+                    </p>
+
+                </article>
+
+
+                <article>
+
+                    <b>03</b>
+
+                    <div class="mc-step-icon">✚</div>
+
+                    <h3>Follow authorized advice</h3>
+
+                    <p>
+                        Use instructions from an appropriately authorized
+                        collection or disposal service.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- MEDICINE SAFETY SECTION -->
+
+        <section class="mc-image-band">
+
+            <img
+                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1500&q=85"
+                alt="Healthcare professional supporting a patient"
+                loading="lazy">
+
+
+            <div>
+
+                <span class="mc-kicker">
+                    MEDICINE SAFETY MATTERS
+                </span>
+
+                <h2>
+                    Never guess.<br>
+                    <em>Check before you dispose.</em>
+                </h2>
+
+                <p>
+                    Do not share prescription medicines directly with another person.
+                    Expired, opened or damaged medicines need appropriate disposal guidance.
+                </p>
+
+                <a class="mc-btn" href="/safety.html">
+                    Explore Safety Guide ↗
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- OUR PURPOSE SECTION -->
+
+        <section class="mc-purpose">
+
+
+            <div class="mc-purpose-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=85"
+                    alt="Healthcare team working together"
+                    loading="lazy">
+
+            </div>
+
+
+            <div class="mc-purpose-copy">
+
+                <span class="mc-kicker">
+                    OUR PURPOSE
+                </span>
+
+                <h2>
+                    Building a more<br>
+                    <em>responsible healthcare community.</em>
+                </h2>
+
+                <p>
+                    MediCycle is a student-led field project created
+                    to spread awareness about unused medicines,
+                    medicine wastage and safe disposal practices.
+                </p>
+
+
+                <div class="mc-values">
+
+                    <div>
+
+                        <b>Our vision</b>
+
+                        <span>
+                            A community that understands the value of medicines
+                            and the impact of improper disposal.
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <b>Our mission</b>
+
+                        <span>
+                            Promote awareness and connect people with
+                            verified participating services.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOTTOM CTA SECTION -->
+
+        <section class="mc-bottom-cta">
+
+
+            <div>
+
+                <span class="mc-kicker">
+                    BE PART OF THE CHANGE
+                </span>
+
+                <h2>
+                    Small steps. A healthier tomorrow.
+                </h2>
+
+                <p>
+                    Explore the project and learn how to handle
+                    unused medicines responsibly.
+                </p>
+
+            </div>
+
+
+            <a class="mc-btn" href="/submit-medicine.html">
+                Get Started ↗
+            </a>
+
+
+        </section>
+
+
+        <!-- DISCLAIMER -->
+
+        <p class="mc-disclaimer">
+
+            MediCycle is a student field-project platform, not a pharmacy
+            or medicine redistribution service. Submitting a request does
+            not mean a medicine is accepted or safe to reuse. Never give
+            prescription medicines directly to another person. Acceptance
+            and disposal decisions must be made by an appropriately
+            authorized organization under applicable rules.
+
+        </p>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="mc-footer">
+
+
+        <a class="mc-brand" href="/index.html" aria-label="MediCycle Home">
+
+            <svg class="mc-logo"
+                viewBox="0 0 300 90"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="MediCycle">
+
+                <rect width="300" height="90" rx="18" fill="#064E46"/>
+
+                <circle cx="45" cy="45" r="32" fill="#B5F36B"/>
+
+                <rect x="38" y="24" width="14" height="42" fill="#064E46"/>
+                <rect x="24" y="38" width="42" height="14" fill="#064E46"/>
+
+                <text x="88" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#FFFFFF">Medi</text>
+
+                <text x="158" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#B5F36B">Cycle</text>
+
+            </svg>
+
+        </a>
+
+
+        <p>
+            Every Medicine Matters. Collect responsibly. Dispose safely.
+        </p>
+
+
+        <div>
+
+            <a href="/about.html">About</a>
+
+            <a href="/safety.html">Safety</a>
+
+            <a href="/centres.html">Centres</a>
+
+            <a href="/admin-login.html">Admin</a>
+
+        </div>
+
+
+        <small>
+            © 2026 MediCycle · Student Field Project
+        </small>
+
+
+    </footer>
+
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>

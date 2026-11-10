@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 90">
+    <rect width="300" height="90" rx="18" fill="#064C4B"/>
+
+```
+<circle cx="45" cy="45" r="32" fill="#B8F27A"/>
+
+<path d="M39 25 H51 V39 H65 V51 H51 V65 H39 V51 H25 V39 H39 Z"
+      fill="#064C4B"/>
+
+<text x="88" y="55" font-family="Arial, sans-serif"
+      font-size="32" font-weight="bold" fill="#FFFFFF">Medi</text>
+
+<text x="164" y="55" font-family="Arial, sans-serif"
+      font-size="32" font-weight="bold" fill="#B8F27A">Cycle</text>
+```
+
+</svg>

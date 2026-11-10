@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#064e46">
+
+<title>Donor Dashboard | MediCycle</title>
+
+<link rel="stylesheet" href="/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #eef5f1;
+    color: #173c34;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 245px minmax(0, 1fr);
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    background: linear-gradient(180deg, #064e46, #087765);
+    color: white;
+    padding: 25px 17px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    margin: 0 0 42px;
+}
+
+.brand img {
+    width: 100%;
+    max-width: 205px;
+    height: 65px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.menu-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #b8d4c9;
+    margin: 15px 12px;
+}
+
+.sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    text-decoration: none;
+    color: #e1f1e9;
+    padding: 14px 13px;
+    margin: 5px 0;
+    border-radius: 11px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #d9f3e9;
+    color: #064e46;
+    font-weight: 700;
+}
+
+.sidebar nav a span {
+    font-size: 19px;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.sidebar-bottom button {
+    width: 100%;
+    border: 0;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* MAIN AREA */
+
+.main-content {
+    min-width: 0;
+    padding: 22px 28px;
+}
+
+.topbar {
+    background: white;
+    border-radius: 17px;
+    padding: 17px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 28px;
+}
+
+.search-box {
+    border: 1px solid #e5eee8;
+    background: #f6faf7;
+    padding: 12px 15px;
+    border-radius: 10px;
+    width: min(420px, 65%);
+}
+
+.profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #dff5e8;
+    color: #087765;
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.profile-mini strong {
+    font-size: 13px;
+}
+
+.profile-mini small {
+    display: block;
+    color: #84958d;
+    margin-top: 3px;
+}
+
+/* WELCOME */
+
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+.welcome h1 {
+    font-size: clamp(22px, 3vw, 29px);
+    margin-bottom: 7px;
+}
+
+.welcome p {
+    color: #7b9187;
+    font-size: 14px;
+}
+
+.date-badge {
+    background: white;
+    padding: 12px 17px;
+    border-radius: 11px;
+    color: #58776a;
+    font-size: 13px;
+}
+
+/* QUICK ACTION */
+
+.quick-action {
+    background: linear-gradient(110deg, #064e46, #11977b);
+    border-radius: 18px;
+    padding: 24px 27px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+    overflow: hidden;
+}
+
+.quick-action h2 {
+    font-size: 21px;
+    margin-bottom: 7px;
+}
+
+.quick-action p {
+    color: #d4eee4;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.quick-action a {
+    background: #b5f36b;
+    color: #064e46;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 13px 19px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+/* STAT CARDS */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    min-width: 0;
+    box-shadow: 0 4px 15px rgba(21, 75, 55, 0.04);
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    color: #81958a;
+    font-size: 12px;
+}
+
+.stat-icon {
+    background: #e1f5e9;
+    color: #07846b;
+    height: 34px;
+    width: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.stat-card h2 {
+    font-size: 30px;
+    margin: 12px 0 4px;
+}
+
+.stat-card small {
+    color: #9aa9a1;
+    font-size: 11px;
+}
+
+/* CONTENT GRID */
+
+.content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(240px, 0.9fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.panel {
+    background: white;
+    border-radius: 17px;
+    padding: 21px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 15px rgba(21, 75, 55, 0.04);
+}
+
+.panel-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.panel-heading h3 {
+    font-size: 16px;
+}
+
+.panel-heading span {
+    font-size: 11px;
+    color: #84958d;
+}
+
+/* REQUEST OVERVIEW */
+
+.overview-bars {
+    height: 170px;
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    gap: 15px;
+    border-bottom: 1px solid #e9efeb;
+    padding: 12px 8px 0;
+}
+
+.bar-item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    gap: 9px;
+    flex: 1;
+}
+
+.bar {
+    width: min(42px, 70%);
+    min-height: 5px;
+    background: linear-gradient(180deg, #b5f36b, #079879);
+    border-radius: 9px 9px 3px 3px;
+    transition: height 0.3s;
+}
+
+.bar-item small {
+    color: #8a9b92;
+    font-size: 10px;
+}
+
+/* REQUEST LIST */
+
+.request-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.request-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: #f5f9f6;
+    border-radius: 12px;
+}
+
+.request-item h4 {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.request-item p {
+    color: #899a91;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.status {
+    padding: 7px 11px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-pending {
+    background: #fff3d9;
+    color: #9b6b13;
+}
+
+.status-approved {
+    background: #e1f5e9;
+    color: #08764f;
+}
+
+.status-rejected {
+    background: #ffe8e8;
+    color: #b44444;
+}
+
+.status-completed {
+    background: #e8efff;
+    color: #4967a9;
+}
+
+/* RIGHT PANELS */
+
+.profile-card {
+    text-align: center;
+}
+
+.avatar-large {
+    width: 65px;
+    height: 65px;
+    background: #dff5e8;
+    color: #087765;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 27px;
+    font-weight: 800;
+    margin: 0 auto 12px;
+}
+
+.profile-card h3 {
+    margin-bottom: 5px;
+}
+
+.profile-card p {
+    font-size: 12px;
+    color: #82958b;
+    margin-bottom: 16px;
+}
+
+.profile-card a {
+    color: #087765;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.safety-card {
+    background: #e4f4e9;
+    border-radius: 17px;
+    padding: 21px;
+}
+
+.safety-card h3 {
+    font-size: 15px;
+    margin-bottom: 11px;
+}
+
+.safety-card p {
+    color: #627d6e;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 13px;
+}
+
+.safety-card a {
+    text-decoration: none;
+    color: #087765;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+/* EMPTY / LOADING */
+
+.empty-state {
+    text-align: center;
+    padding: 25px 10px;
+    color: #84958d;
+    font-size: 13px;
+}
+
+.message {
+    color: #8a9b92;
+    font-size: 13px;
+    margin-bottom: 13px;
+    line-height: 1.5;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1050px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 12px;
+    }
+
+    .brand {
+        margin: 0 0 12px;
+    }
+
+    .brand img {
+        height: 48px;
+        max-width: 170px;
+    }
+
+    .sidebar nav {
+        display: flex;
+        overflow-x: auto;
+        gap: 5px;
+    }
+
+    .sidebar nav a {
+        white-space: nowrap;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .menu-label,
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .topbar {
+        padding: 12px;
+    }
+
+    .welcome {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .quick-action {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .stats-grid {
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 14px;
+    }
+
+    .stat-card h2 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 380px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .request-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <a class="brand" href="/index.html">
+            <img src="/medicycle-logo.svg" alt="MediCycle Logo">
+        </a>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav>
+            <a class="active" href="/my-donations.html"><span>▦</span> Dashboard</a>
+            <a href="/submit-medicine.html"><span>＋</span> Submit Medicine</a>
+            <a href="#requests"><span>▤</span> My Requests</a>
+            <a href="/centres.html"><span>⌖</span> Collection Centres</a>
+            <a href="/safety.html"><span>♡</span> Safety Guide</a>
+        </nav>
+
+        <p class="menu-label">ACCOUNT</p>
+
+        <nav>
+            <a href="/register.html"><span>♙</span> My Profile</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button id="logoutButton" type="button">↪ &nbsp; Logout</button>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <input
+                class="search-box"
+                type="search"
+                id="searchRequests"
+                placeholder="⌕  Search your medicine requests..."
+                aria-label="Search requests">
+
+            <div class="profile-mini">
+                <div class="profile-icon">✚</div>
+                <div>
+                    <strong id="topName">MediCycle Donor</strong>
+                    <small>Donor Account</small>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- WELCOME -->
+        <section class="welcome">
+
+            <div>
+                <h1 id="welcome">Welcome back! 👋</h1>
+                <p>Here is an overview of your medicine requests.</p>
+            </div>
+
+            <div class="date-badge" id="todayDate"></div>
+
+        </section>
+
+
+        <!-- QUICK ACTION -->
+        <section class="quick-action">
+
+            <div>
+                <h2>Every medicine matters. 💚</h2>
+                <p>Have unused medicines? Share their details and request a review.</p>
+            </div>
+
+            <a href="/submit-medicine.html">＋ Submit Medicine</a>
+
+        </section>
+
+
+        <!-- STATS -->
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    Total Requests
+                    <span class="stat-icon">▤</span>
+                </div>
+                <h2 id="totalCount">0</h2>
+                <small>All your submitted requests</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    Pending
+                    <span class="stat-icon">◷</span>
+                </div>
+                <h2 id="pendingCount">0</h2>
+                <small>Awaiting review</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    Approved
+                    <span class="stat-icon">✓</span>
+                </div>
+                <h2 id="approvedCount">0</h2>
+                <small>Administrative status only</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    Completed
+                    <span class="stat-icon">✚</span>
+                </div>
+                <h2 id="completedCount">0</h2>
+                <small>Marked completed</small>
+            </article>
+
+        </section>
+
+
+        <!-- CONTENT GRID -->
+        <section class="content-grid">
+
+            <div>
+
+                <!-- CHART -->
+                <article class="panel">
+
+                    <div class="panel-heading">
+                        <h3>Request Overview</h3>
+                        <span>Current request status</span>
+                    </div>
+
+                    <div class="overview-bars">
+
+                        <div class="bar-item">
+                            <div class="bar" id="pendingBar"></div>
+                            <small>Pending</small>
+                        </div>
+
+                        <div class="bar-item">
+                            <div class="bar" id="approvedBar"></div>
+                            <small>Approved</small>
+                        </div>
+
+                        <div class="bar-item">
+                            <div class="bar" id="rejectedBar"></div>
+                            <small>Rejected</small>
+                        </div>
+
+                        <div class="bar-item">
+                            <div class="bar" id="completedBar"></div>
+                            <small>Completed</small>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RECENT REQUESTS -->
+                <article class="panel" id="requests">
+
+                    <div class="panel-heading">
+                        <h3>My Medicine Requests</h3>
+                        <span id="requestCountLabel">Loading...</span>
+                    </div>
+
+                    <p class="message" id="message" role="status">
+                        Loading your requests...
+                    </p>
+
+                    <div class="request-list" id="donations"></div>
+
+                </article>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+            <div>
+
+                <article class="panel profile-card">
+
+                    <div class="avatar-large">✚</div>
+
+                    <h3 id="profileName">Donor Name</h3>
+
+                    <p id="profileEmail">Donor Account</p>
+
+                    <a href="/register.html">Account Information →</a>
+
+                </article>
+
+
+                <article class="safety-card">
+
+                    <h3>🛡️ Medicine Safety Reminder</h3>
+
+                    <p>
+                        Never distribute prescription medicines directly
+                        to another person. Expired, opened or damaged
+                        medicines require appropriate disposal guidance.
+                    </p>
+
+                    <a href="/safety.html">OPEN SAFETY GUIDE →</a>
+
+                </article>
+
+                <article class="panel">
+
+                    <div class="panel-heading">
+                        <h3>Need Help?</h3>
+                    </div>
+
+                    <p style="font-size:12px;line-height:1.7;color:#81958a;">
+                        Check the safety guide and collection centre
+                        information before taking any medicine-related action.
+                    </p>
+
+                    <a href="/centres.html"
+                       style="display:inline-block;margin-top:13px;color:#087765;text-decoration:none;font-size:12px;font-weight:700;">
+                        EXPLORE CENTRES →
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <footer style="text-align:center;color:#9aa9a1;font-size:11px;padding:20px;">
+            © 2026 MediCycle · Every Medicine Matters
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script>
+const welcome = document.getElementById("welcome");
+const message = document.getElementById("message");
+const donationsContainer = document.getElementById("donations");
+
+let allDonations = [];
+
+document.getElementById("todayDate").textContent =
+    new Date().toLocaleDateString("en-IN", {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+
+
+function setCount(id, value) {
+    document.getElementById(id).textContent = value;
+}
+
+
+function normalStatus(status) {
+    return String(status || "Pending").toLowerCase().trim();
+}
+
+
+function updateStatistics(donations) {
+
+    const counts = {
+        pending: 0,
+        approved: 0,
+        rejected: 0,
+        completed: 0
+    };
+
+    donations.forEach((donation) => {
+        const status = normalStatus(donation.status);
+
+        if (Object.prototype.hasOwnProperty.call(counts, status)) {
+            counts[status]++;
+        }
+    });
+
+    setCount("totalCount", donations.length);
+    setCount("pendingCount", counts.pending);
+    setCount("approvedCount", counts.approved);
+    setCount("completedCount", counts.completed);
+
+    const maximum = Math.max(1, ...Object.values(counts));
+
+    document.getElementById("pendingBar").style.height =
+        (counts.pending / maximum * 100) + "%";
+
+    document.getElementById("approvedBar").style.height =
+        (counts.approved / maximum * 100) + "%";
+
+    document.getElementById("rejectedBar").style.height =
+        (counts.rejected / maximum * 100) + "%";
+
+    document.getElementById("completedBar").style.height =
+        (counts.completed / maximum * 100) + "%";
+}
+
+
+function renderDonations(donations) {
+
+    donationsContainer.replaceChildren();
+
+    document.getElementById("requestCountLabel").textContent =
+        donations.length + " requests";
+
+    if (donations.length === 0) {
+
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.textContent =
+            "You have not submitted any requests yet. Use the Submit Medicine button to get started.";
+
+        donationsContainer.appendChild(empty);
+        return;
+    }
+
+    donations.forEach((donation) => {
+
+        const card = document.createElement("article");
+        card.className = "request-item";
+
+        const details = document.createElement("div");
+
+        const title = document.createElement("h4");
+        title.textContent = donation.medicineName || "Medicine request";
+
+        const info = document.createElement("p");
+
+        const submittedDate = donation.createdAt
+            ? new Date(donation.createdAt).toLocaleDateString("en-IN")
+            : "Date unavailable";
+
+        info.textContent =
+            "Quantity: " + (donation.quantity || "Not specified") +
+            " · " + (donation.city || "City unavailable") +
+            " · Submitted: " + submittedDate;
+
+        details.append(title, info);
+
+        const status = document.createElement("span");
+        const statusValue = normalStatus(donation.status);
+
+        status.className = "status status-" +
+            (["pending", "approved", "rejected", "completed"].includes(statusValue)
+                ? statusValue
+                : "pending");
+
+        status.textContent =
+            (donation.status || "Pending");
+
+        card.append(details, status);
+        donationsContainer.appendChild(card);
+
+    });
+}
+
+
+async function loadDonations() {
+
+    try {
+
+        const sessionResponse = await fetch("/api/donor/session", {
+            credentials: "same-origin"
+        });
+
+        if (!sessionResponse.ok) {
+            throw new Error("Could not verify your login.");
+        }
+
+        const sessionData = await sessionResponse.json();
+
+        if (!sessionData.loggedIn) {
+            window.location.href = "/login.html";
+            return;
+        }
+
+        const user = sessionData.user || {};
+        const fullName = user.fullName || "Donor";
+
+        welcome.textContent = "Welcome back, " + fullName + "! 👋";
+
+        document.getElementById("topName").textContent = fullName;
+        document.getElementById("profileName").textContent = fullName;
+        document.getElementById("profileEmail").textContent =
+            user.email || "MediCycle Donor";
+
+        const response = await fetch("/api/donor/donations", {
+            credentials: "same-origin"
+        });
+
+        const result = await response.json();
+
+        if (response.status === 401) {
+            window.location.href = "/login.html";
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error(result.message || "Could not load your requests.");
+        }
+
+        allDonations = Array.isArray(result.donations)
+            ? result.donations
+            : [];
+
+        updateStatistics(allDonations);
+        renderDonations(allDonations);
+
+        message.textContent = "";
+
+    } catch (error) {
+
+        message.textContent = error.message;
+        document.getElementById("requestCountLabel").textContent =
+            "Unable to load";
+
+    }
+}
+
+
+// SEARCH
+document.getElementById("searchRequests").addEventListener("input", function () {
+
+    const searchTerm = this.value.toLowerCase().trim();
+
+    const filtered = allDonations.filter((donation) => {
+
+        return (
+            String(donation.medicineName || "").toLowerCase().includes(searchTerm) ||
+            String(donation.city || "").toLowerCase().includes(searchTerm) ||
+            String(donation.status || "").toLowerCase().includes(searchTerm)
+        );
+
+    });
+
+    renderDonations(filtered);
+
+});
+
+
+// LOGOUT
+document.getElementById("logoutButton").addEventListener("click", async () => {
+
+    try {
+
+        await fetch("/api/donor/logout", {
+            method: "POST",
+            credentials: "same-origin"
+        });
+
+    } finally {
+
+        window.location.href = "/login.html";
+
+    }
+
+});
+
+
+loadDonations();
+</script>
+
+</body>
+</html>

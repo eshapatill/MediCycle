@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Explore MediCycle collection-centre information and medicine disposal guidance.">
+
+    <meta name="theme-color" content="#f5f6ee">
+
+    <title>Collection Centres | MediCycle</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- LEAFLET MAP CSS -->
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: #f5f6ee;
+            color: #244c42;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* HEADER */
+
+        .navbar {
+            width: 100%;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 35px;
+            gap: 25px;
+            background: #ffffff;
+            border-radius: 0 0 18px 18px;
+        }
+
+        /* MEDICYCLE LOGO */
+
+        .navbar .brand {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .mc-logo {
+            width: 250px;
+            height: 75px;
+            display: block;
+        }
+
+        /* NAVIGATION */
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            color: #164b40;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .navbar nav a:hover {
+            color: #70ad45;
+        }
+
+        /* MAIN CONTENT */
+
+        .content-page {
+            width: 100%;
+            max-width: 1100px;
+            margin: 45px auto;
+            padding: 25px;
+        }
+
+        .content-page h1 {
+            color: #164b40;
+            font-size: 34px;
+            margin-bottom: 14px;
+        }
+
+        .content-page > p {
+            color: #718078;
+            line-height: 1.7;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* MAP */
+
+        #map {
+            width: 100%;
+            max-width: 100%;
+            height: 420px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #dce7dc;
+            box-shadow: 0 6px 24px rgba(20, 65, 50, 0.07);
+            z-index: 1;
+        }
+
+        .content-page h2 {
+            color: #164b40;
+            font-size: 25px;
+            margin-top: 40px;
+            margin-bottom: 22px;
+        }
+
+        /* CENTRE CARDS */
+
+        .centre-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .centre-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #e4ece3;
+            box-shadow: 0 5px 20px rgba(20, 65, 50, 0.04);
+        }
+
+        .centre-card h3 {
+            color: #164b40;
+            font-size: 19px;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .centre-card p {
+            color: #718078;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .centre-status {
+            display: inline-block;
+            background: #fff3d9;
+            color: #8a641e;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* SAFETY NOTE */
+
+        .centre-notice {
+            margin-top: 25px;
+            background: #eef5eb;
+            border-left: 4px solid #70ad45;
+            padding: 18px;
+            border-radius: 10px;
+            color: #526d60;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+
+        .centres-footer {
+            background: #064e46;
+            color: #ffffff;
+            padding: 25px;
+            text-align: center;
+            margin-top: 45px;
+        }
+
+        .centres-footer p {
+            color: #d5e6dd;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                min-height: 85px;
+                padding: 10px 18px;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .mc-logo {
+                width: 190px;
+                height: 58px;
+            }
+
+            .navbar nav {
+                width: 100%;
+                justify-content: flex-start;
+                gap: 20px;
+                flex-wrap: wrap;
+                padding-bottom: 10px;
+            }
+
+            .content-page {
+                margin: 25px auto;
+                padding: 18px;
+            }
+
+            .content-page h1 {
+                font-size: 29px;
+            }
+
+            #map {
+                height: 350px;
+            }
+
+            .centre-list {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .mc-logo {
+                width: 165px;
+                height: 52px;
+            }
+
+            .navbar nav {
+                gap: 14px;
+            }
+
+            .navbar nav a {
+                font-size: 12px;
+            }
+
+            .content-page {
+                padding: 14px;
+            }
+
+            .content-page h1 {
+                font-size: 25px;
+            }
+
+            #map {
+                height: 280px;
+            }
+
+            .centre-card {
+                padding: 19px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header class="navbar">
+
+        <a href="/index.html" class="brand" aria-label="MediCycle Home">
+
+            <svg class="mc-logo"
+                viewBox="0 0 300 90"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="MediCycle">
+
+                <rect width="300" height="90" rx="18" fill="#064E46"/>
+
+                <circle cx="45" cy="45" r="32" fill="#B5F36B"/>
+
+                <rect x="38" y="24" width="14" height="42" fill="#064E46"/>
+                <rect x="24" y="38" width="42" height="14" fill="#064E46"/>
+
+                <text x="88" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#FFFFFF">Medi</text>
+
+                <text x="158" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#B5F36B">Cycle</text>
+
+            </svg>
+
+        </a>
+
+
+        <nav id="navigation">
+
+            <a href="/index.html">Home</a>
+
+            <a href="/submit-medicine.html">Submit Medicine</a>
+
+            <a href="/centres.html">Collection Centres</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="content-page">
+
+
+        <h1>Find a Collection Centre</h1>
+
+        <p>
+            Explore the map below for location information.
+            Locations must be verified before they are presented
+            as actual medicine collection services.
+        </p>
+
+
+        <!-- MAP -->
+
+        <div id="map" aria-label="Collection centre map"></div>
+
+
+        <!-- COLLECTION CENTRE INFORMATION -->
+
+        <h2>Collection Centre Information</h2>
+
+
+        <div class="centre-list">
+
+
+            <article class="centre-card">
+
+                <h3>Sample Centre 01</h3>
+
+                <p>
+                    Pune, Maharashtra
+                </p>
+
+                <span class="centre-status">
+                    Demonstration Only — Not Verified
+                </span>
+
+            </article>
+
+
+            <article class="centre-card">
+
+                <h3>Sample Centre 02</h3>
+
+                <p>
+                    Pune, Maharashtra
+                </p>
+
+                <span class="centre-status">
+                    Demonstration Only — Not Verified
+                </span>
+
+            </article>
+
+
+        </div>
+
+
+        <!-- SAFETY NOTICE -->
+
+        <div class="centre-notice">
+
+            <strong>Important:</strong>
+
+            The map is provided for location demonstration only.
+            Sample locations are not confirmed medicine collection
+            services. Please verify authorization and acceptance
+            directly with an organization before visiting.
+
+        </div>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="centres-footer">
+
+        <p>
+            © 2026 MediCycle | College Field Project
+        </p>
+
+        <p>
+            Every Medicine Matters. Collect Responsibly. Dispose Safely.
+        </p>
+
+    </footer>
+
+
+    <!-- LEAFLET MAP JAVASCRIPT -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+
+        const map = L.map("map").setView([18.5204, 73.8567], 11);
+
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                attribution: "&copy; OpenStreetMap contributors",
+                maxZoom: 19
+            }
+        ).addTo(map);
+
+        L.marker([18.5204, 73.8567])
+            .addTo(map)
+            .bindPopup("Pune — map demonstration only");
+
+    </script>
+
+
+</body>
+
+</html>

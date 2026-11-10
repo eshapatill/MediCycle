@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#064e46">
+
+    <title>Admin Login | MediCycle</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #eaf2e9;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            color: #123f36;
+        }
+
+        .background-shape {
+            position: fixed;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .shape-one {
+            width: 500px;
+            height: 500px;
+            background: #c8e7c0;
+            top: -260px;
+            left: -130px;
+        }
+
+        .shape-two {
+            width: 500px;
+            height: 500px;
+            background: #b6d9c3;
+            bottom: -280px;
+            right: -130px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 650px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(15, 67, 54, 0.13);
+        }
+
+        /* LEFT IMAGE */
+
+        .login-visual {
+            position: relative;
+            min-height: 650px;
+            background: #064e46;
+            overflow: hidden;
+        }
+
+        .login-visual > img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .visual-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(4, 65, 55, 0.20),
+                rgba(4, 65, 55, 0.90)
+            );
+        }
+
+        /* LOGO */
+
+        .brand {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 2;
+        }
+
+        .mc-logo {
+            width: 230px;
+            height: 69px;
+            display: block;
+        }
+
+        /* LEFT TEXT */
+
+        .visual-content {
+            position: absolute;
+            z-index: 2;
+            bottom: 55px;
+            left: 40px;
+            right: 35px;
+            color: white;
+        }
+
+        .visual-tag {
+            display: inline-block;
+            padding: 9px 15px;
+            border-radius: 30px;
+            background: rgba(181, 243, 107, 0.15);
+            border: 1px solid rgba(181, 243, 107, 0.6);
+            color: #d7f7a5;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+            margin-bottom: 20px;
+        }
+
+        .visual-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(35px, 4vw, 50px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .visual-content h1 span {
+            color: #b5f36b;
+        }
+
+        .visual-content p {
+            max-width: 420px;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #e0eee7;
+        }
+
+        .visual-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 28px;
+            color: #d9eddf;
+            font-size: 12px;
+        }
+
+        .visual-footer span {
+            color: #b5f36b;
+            font-size: 19px;
+        }
+
+        /* RIGHT LOGIN */
+
+        .login-form-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 75px;
+        }
+
+        .welcome-text {
+            margin-bottom: 38px;
+        }
+
+        .small-label {
+            display: block;
+            color: #6b9d73;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .welcome-text h2 {
+            font-size: 36px;
+            color: #123f36;
+            margin-bottom: 12px;
+        }
+
+        .welcome-text p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #829087;
+        }
+
+        /* INPUTS */
+
+        .input-group {
+            margin-bottom: 23px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #31574a;
+            margin-bottom: 9px;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            background: #f1f6f1;
+            border: 1px solid #e0eae0;
+            border-radius: 13px;
+            transition: 0.2s;
+        }
+
+        .input-box:focus-within {
+            border-color: #75ae70;
+            box-shadow: 0 0 0 3px rgba(117, 174, 112, 0.12);
+        }
+
+        .input-icon {
+            color: #72967c;
+            font-size: 18px;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 54px;
+            padding: 0 12px;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 14px;
+            color: #23483d;
+        }
+
+        .input-box input::placeholder {
+            color: #a0aca4;
+        }
+
+        .toggle-password {
+            border: none;
+            background: transparent;
+            color: #527c64;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        /* REMEMBER ME */
+
+        .login-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 4px 0 28px;
+            font-size: 12px;
+            color: #66786e;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .remember input {
+            accent-color: #07564c;
+            width: 15px;
+            height: 15px;
+        }
+
+        /* LOGIN BUTTON */
+
+        .login-button {
+            width: 100%;
+            height: 55px;
+            border: none;
+            border-radius: 30px;
+            background: #07564c;
+            color: white;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .login-button:hover {
+            background: #438b60;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(7, 86, 76, 0.17);
+        }
+
+        .login-button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #loginMessage {
+            min-height: 22px;
+            margin-top: 14px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 28px;
+            color: #557568;
+            font-size: 13px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .home-link:hover {
+            color: #07564c;
+        }
+
+        .login-note {
+            text-align: center;
+            color: #a0aaa1;
+            font-size: 10px;
+            margin-top: 30px;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 950px) {
+            body {
+                padding: 20px;
+            }
+
+            .login-form-section {
+                padding: 40px 35px;
+            }
+
+            .mc-logo {
+                width: 190px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+            body {
+                padding: 12px;
+            }
+
+            .login-container {
+                display: flex;
+                flex-direction: column;
+                max-width: 460px;
+            }
+
+            .login-visual {
+                min-height: 280px;
+            }
+
+            .login-visual > img {
+                object-position: center 35%;
+            }
+
+            .brand {
+                top: 17px;
+                left: 18px;
+            }
+
+            .mc-logo {
+                width: 170px;
+                height: auto;
+            }
+
+            .visual-content {
+                left: 22px;
+                right: 20px;
+                bottom: 20px;
+            }
+
+            .visual-content h1 {
+                font-size: 29px;
+                margin-bottom: 8px;
+            }
+
+            .visual-content p {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .visual-tag {
+                font-size: 9px;
+                margin-bottom: 9px;
+            }
+
+            .visual-footer {
+                margin-top: 10px;
+                font-size: 10px;
+            }
+
+            .login-form-section {
+                padding: 35px 23px;
+            }
+
+            .welcome-text h2 {
+                font-size: 29px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <main class="login-container">
+
+        <!-- LEFT IMAGE SECTION -->
+
+        <section class="login-visual">
+
+            <img
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=85"
+                alt="Healthcare professional"
+                onerror="this.style.display='none'">
+
+            <div class="visual-overlay"></div>
+
+            <!-- MEDICYCLE LOGO -->
+
+            <a href="/index.html" class="brand" aria-label="MediCycle Home">
+
+                <svg class="mc-logo"
+                    viewBox="0 0 300 90"
+                    xmlns="http://www.w3.org/2000/svg"
+                    role="img"
+                    aria-label="MediCycle">
+
+                    <rect width="300" height="90" rx="18" fill="#064E46"/>
+
+                    <circle cx="45" cy="45" r="32" fill="#B5F36B"/>
+
+                    <rect x="38" y="24" width="14" height="42" fill="#064E46"/>
+                    <rect x="24" y="38" width="42" height="14" fill="#064E46"/>
+
+                    <text x="88" y="55"
+                        font-family="Arial, sans-serif"
+                        font-size="32"
+                        font-weight="bold"
+                        fill="#FFFFFF">Medi</text>
+
+                    <text x="158" y="55"
+                        font-family="Arial, sans-serif"
+                        font-size="32"
+                        font-weight="bold"
+                        fill="#B5F36B">Cycle</text>
+
+                </svg>
+
+            </a>
+
+            <div class="visual-content">
+
+                <span class="visual-tag">
+                    MEDICYCLE ADMINISTRATION
+                </span>
+
+                <h1>
+                    Manage with care.<br>
+                    Make a <span>difference.</span>
+                </h1>
+
+                <p>
+                    Welcome to the MediCycle Administration Portal.
+                    Review medicine requests, manage submissions
+                    and support responsible medicine handling.
+                </p>
+
+                <div class="visual-footer">
+                    <span>✦</span>
+                    Every Medicine Matters
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- RIGHT LOGIN FORM -->
+
+        <section class="login-form-section">
+
+            <div class="welcome-text">
+
+                <span class="small-label">
+                    SECURE ADMIN PORTAL
+                </span>
+
+                <h2>Welcome Back!</h2>
+
+                <p>
+                    Sign in to access the MediCycle administration dashboard.
+                </p>
+
+            </div>
+
+            <form id="adminLoginForm">
+
+                <div class="input-group">
+
+                    <label for="username">Admin Username</label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">♙</span>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter admin username"
+                            autocomplete="username"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="password">Password</label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">🔒</span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="togglePassword">
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="login-options">
+
+                    <label class="remember">
+                        <input type="checkbox" id="rememberMe">
+                        Remember me
+                    </label>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton">
+
+                    Login to Dashboard →
+
+                </button>
+
+                <p id="loginMessage" role="status" aria-live="polite"></p>
+
+            </form>
+
+            <a href="/index.html" class="home-link">
+                ← Back to MediCycle Website
+            </a>
+
+            <p class="login-note">
+                MediCycle Administration Portal · © 2026
+            </p>
+
+        </section>
+
+    </main>
+
+    <script>
+
+        // SHOW / HIDE PASSWORD
+
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", function() {
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePassword.textContent = "Hide";
+            } else {
+                passwordInput.type = "password";
+                togglePassword.textContent = "Show";
+            }
+
+        });
+
+
+        // ADMIN LOGIN - EXISTING BACKEND ROUTE
+
+        const adminLoginForm = document.getElementById("adminLoginForm");
+        const loginMessage = document.getElementById("loginMessage");
+        const loginButton = document.getElementById("loginButton");
+
+        adminLoginForm.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            loginMessage.textContent = "";
+            loginMessage.style.color = "#c0392b";
+
+            const username = document.getElementById("username").value.trim();
+            const password = passwordInput.value;
+
+            loginButton.disabled = true;
+            loginButton.textContent = "Signing in...";
+
+            try {
+
+                const response = await fetch("/api/admin/login", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    credentials: "same-origin",
+
+                    body: JSON.stringify({
+                        username,
+                        password
+                    })
+
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        result.message || "Invalid username or password."
+                    );
+                }
+
+                loginMessage.style.color = "#23834e";
+                loginMessage.textContent =
+                    result.message || "Login successful! Opening dashboard...";
+
+                loginButton.textContent = "Login Successful ✓";
+
+                setTimeout(function() {
+                    window.location.href = "/admin.html";
+                }, 700);
+
+            } catch(error) {
+
+                loginMessage.style.color = "#c0392b";
+                loginMessage.textContent =
+                    error.message || "Unable to login. Please try again.";
+
+                loginButton.disabled = false;
+                loginButton.textContent = "Login to Dashboard →";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

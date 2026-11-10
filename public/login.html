@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#064e46">
+    <meta name="description" content="Login to your MediCycle donor account and track your medicine requests.">
+
+    <title>Donor Login | MediCycle</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'DM Sans', sans-serif;
+            background: #e8f0e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 35px;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND DECORATION */
+
+        .background-shape {
+            position: fixed;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .shape-one {
+            width: 650px;
+            height: 650px;
+            background: #c9e7c1;
+            top: -300px;
+            left: -180px;
+        }
+
+        .shape-two {
+            width: 550px;
+            height: 550px;
+            background: #b4d9c3;
+            bottom: -300px;
+            right: -180px;
+        }
+
+        /* MAIN LOGIN CONTAINER */
+
+        .login-container {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 650px;
+            background: #ffffff;
+            border-radius: 28px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 25px 70px rgba(15, 67, 54, 0.13);
+        }
+
+        /* LEFT IMAGE SECTION */
+
+        .login-visual {
+            position: relative;
+            min-height: 650px;
+            background: #0b5b50;
+            overflow: hidden;
+        }
+
+        .login-visual img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            inset: 0;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .visual-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(4, 65, 55, 0.20),
+                rgba(4, 65, 55, 0.90)
+            );
+        }
+
+        /* LOGO */
+
+        .login-brand {
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            z-index: 2;
+        }
+
+        .mc-logo {
+            width: 230px;
+            height: auto;
+            display: block;
+        }
+
+        /* LEFT TEXT */
+
+        .visual-content {
+            position: absolute;
+            z-index: 2;
+            bottom: 55px;
+            left: 40px;
+            right: 35px;
+            color: #ffffff;
+        }
+
+        .visual-tag {
+            display: inline-block;
+            padding: 8px 14px;
+            background: rgba(205, 244, 164, 0.18);
+            border: 1px solid rgba(205, 244, 164, 0.4);
+            border-radius: 30px;
+            color: #d6f6ae;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .visual-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .visual-content h1 span {
+            color: #c6f28e;
+        }
+
+        .visual-content p {
+            color: #e0eee7;
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 430px;
+        }
+
+        /* RIGHT LOGIN SECTION */
+
+        .login-form-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 65px 75px;
+            background: #ffffff;
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .welcome-text .small-label {
+            color: #6b9d73;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .welcome-text h2 {
+            font-size: 36px;
+            color: #123f36;
+            margin-bottom: 12px;
+        }
+
+        .welcome-text p {
+            color: #829087;
+            font-size: 15px;
+        }
+
+        /* INPUT FIELDS */
+
+        .input-group {
+            margin-bottom: 22px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #31574a;
+            margin-bottom: 9px;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            background: #f3f7f3;
+            border: 1px solid #e1ebe0;
+            border-radius: 30px;
+            padding: 0 19px;
+            transition: 0.2s;
+        }
+
+        .input-box:focus-within {
+            border-color: #75ae70;
+            box-shadow: 0 0 0 3px rgba(117, 174, 112, 0.12);
+        }
+
+        .input-icon {
+            font-size: 18px;
+            color: #72967c;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 55px;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 0 12px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #23483d;
+        }
+
+        .input-box input::placeholder {
+            color: #a0aca4;
+        }
+
+        /* PASSWORD TOGGLE */
+
+        .toggle-password {
+            border: none;
+            background: transparent;
+            color: #527c64;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* LOGIN BUTTON */
+
+        .login-button {
+            width: 100%;
+            height: 55px;
+            border: none;
+            border-radius: 30px;
+            background: #07564c;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: 0.25s;
+        }
+
+        .login-button:hover {
+            background: #438b60;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(7, 86, 76, 0.17);
+        }
+
+        .login-button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* MESSAGE */
+
+        #loginMessage {
+            min-height: 22px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* REGISTER LINK */
+
+        .register-text {
+            text-align: center;
+            margin-top: 35px;
+            color: #77857b;
+            font-size: 14px;
+        }
+
+        .register-text a {
+            color: #08715c;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            color: #557568;
+            font-size: 14px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .home-link:hover {
+            color: #07564c;
+        }
+
+        .login-note {
+            text-align: center;
+            color: #a0aaa1;
+            font-size: 11px;
+            margin-top: 35px;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 900px) {
+
+            body {
+                padding: 20px;
+            }
+
+            .login-container {
+                grid-template-columns: 0.9fr 1.1fr;
+            }
+
+            .login-form-section {
+                padding: 45px 35px;
+            }
+
+            .login-brand {
+                left: 22px;
+                top: 25px;
+            }
+
+            .mc-logo {
+                width: 185px;
+            }
+
+            .visual-content {
+                left: 25px;
+                right: 20px;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .login-container {
+                display: flex;
+                flex-direction: column;
+                max-width: 450px;
+                min-height: auto;
+            }
+
+            .login-visual {
+                min-height: 260px;
+            }
+
+            .login-visual img {
+                object-position: center 35%;
+            }
+
+            .login-brand {
+                top: 18px;
+                left: 18px;
+            }
+
+            .mc-logo {
+                width: 165px;
+            }
+
+            .visual-content {
+                bottom: 20px;
+                left: 22px;
+                right: 22px;
+            }
+
+            .visual-content h1 {
+                font-size: 27px;
+                margin-bottom: 8px;
+            }
+
+            .visual-content p {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .visual-tag {
+                margin-bottom: 10px;
+                font-size: 9px;
+            }
+
+            .login-form-section {
+                padding: 35px 25px;
+            }
+
+            .welcome-text h2 {
+                font-size: 29px;
+            }
+
+            .register-text {
+                margin-top: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+
+    <main class="login-container">
+
+
+        <!-- LEFT HEALTHCARE IMAGE -->
+
+        <section class="login-visual">
+
+            <img
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1000&q=85"
+                alt="Healthcare professional"
+                onerror="this.style.display='none'">
+
+
+            <div class="visual-overlay"></div>
+
+
+            <!-- MEDICYCLE LOGO -->
+
+            <a href="/index.html" class="login-brand" aria-label="MediCycle Home">
+
+                <svg class="mc-logo"
+                    viewBox="0 0 300 90"
+                    xmlns="http://www.w3.org/2000/svg"
+                    role="img"
+                    aria-label="MediCycle">
+
+                    <rect width="300" height="90" rx="18" fill="#064E46"/>
+
+                    <circle cx="45" cy="45" r="32" fill="#B5F36B"/>
+
+                    <rect x="38" y="24" width="14" height="42" fill="#064E46"/>
+                    <rect x="24" y="38" width="42" height="14" fill="#064E46"/>
+
+                    <text x="88" y="55"
+                        font-family="Arial, sans-serif"
+                        font-size="32"
+                        font-weight="bold"
+                        fill="#FFFFFF">Medi</text>
+
+                    <text x="158" y="55"
+                        font-family="Arial, sans-serif"
+                        font-size="32"
+                        font-weight="bold"
+                        fill="#B5F36B">Cycle</text>
+
+                </svg>
+
+            </a>
+
+
+            <div class="visual-content">
+
+                <span class="visual-tag">
+                    RESPONSIBLE MEDICINE MANAGEMENT
+                </span>
+
+                <h1>
+                    Every Medicine.<br>
+                    <span>Every Life.</span><br>
+                    Every Difference.
+                </h1>
+
+                <p>
+                    Your contribution to responsible medicine handling
+                    starts here. Together, let's build a safer and
+                    more aware healthcare community.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RIGHT LOGIN FORM -->
+
+        <section class="login-form-section">
+
+
+            <div class="welcome-text">
+
+                <span class="small-label">
+                    MEDICYCLE DONOR PORTAL
+                </span>
+
+                <h2>Welcome Back!</h2>
+
+                <p>
+                    Enter your email and password to continue.
+                </p>
+
+            </div>
+
+
+
+            <form id="loginForm">
+
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label for="email">Email Address</label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">✉</span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label for="password">Password</label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">🔒</span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="togglePassword"
+                            aria-label="Show password">
+
+                            Show
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button type="submit" class="login-button" id="loginButton">
+
+                    Login to Your Account →
+
+                </button>
+
+
+                <p id="loginMessage" role="status" aria-live="polite"></p>
+
+
+            </form>
+
+
+
+            <!-- REGISTER -->
+
+            <div class="register-text">
+
+                Don't have an account?
+
+                <a href="/register.html">
+                    Create Account
+                </a>
+
+            </div>
+
+
+
+            <a href="/index.html" class="home-link">
+                ← Back to Home
+            </a>
+
+
+            <p class="login-note">
+                MediCycle · Every Medicine Matters · © 2026
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- DONOR LOGIN JAVASCRIPT -->
+
+    <script>
+
+        // SHOW / HIDE PASSWORD
+
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", function () {
+
+            if (passwordInput.type === "password") {
+
+                passwordInput.type = "text";
+                togglePassword.textContent = "Hide";
+                togglePassword.setAttribute("aria-label", "Hide password");
+
+            } else {
+
+                passwordInput.type = "password";
+                togglePassword.textContent = "Show";
+                togglePassword.setAttribute("aria-label", "Show password");
+
+            }
+
+        });
+
+
+
+        // DONOR LOGIN
+
+        const loginForm = document.getElementById("loginForm");
+        const loginMessage = document.getElementById("loginMessage");
+        const loginButton = document.getElementById("loginButton");
+
+
+        loginForm.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+            loginMessage.textContent = "";
+            loginMessage.style.color = "#b23b3b";
+
+            const email = loginForm.email.value.trim();
+            const password = loginForm.password.value;
+
+            loginButton.disabled = true;
+            loginButton.textContent = "Please wait...";
+
+
+            try {
+
+                const response = await fetch("/api/donor/login", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+
+                });
+
+
+                const result = await response.json();
+
+
+                if (!response.ok || !result.success) {
+
+                    throw new Error(
+                        result.message || "Invalid email or password."
+                    );
+
+                }
+
+
+                loginMessage.style.color = "#23834e";
+                loginMessage.textContent = "Login successful! Redirecting...";
+
+                loginButton.textContent = "Login Successful ✓";
+
+
+                setTimeout(function () {
+
+                    window.location.href = "/my-donations.html";
+
+                }, 700);
+
+
+            } catch (error) {
+
+                loginMessage.style.color = "#c0392b";
+                loginMessage.textContent =
+                    error.message || "Unable to login. Please try again.";
+
+                loginButton.disabled = false;
+                loginButton.textContent = "Login to Your Account →";
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

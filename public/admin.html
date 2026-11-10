@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediCycle | Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --dark: #064e46;
+            --dark2: #0b6257;
+            --green: #12a88c;
+            --lime: #b5f36b;
+            --bg: #edf5f4;
+            --white: #ffffff;
+            --text: #163f38;
+            --muted: #83969a;
+            --border: #e8efed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 245px;
+            background: var(--dark);
+            color: white;
+            padding: 25px 17px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 5px 12px 38px;
+            color: white;
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            height: 39px;
+            width: 39px;
+            border-radius: 12px;
+            background: var(--lime);
+            color: var(--dark);
+            display: grid;
+            place-items: center;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .brand span:last-child {
+            color: var(--lime);
+        }
+
+        .menu-label {
+            color: #a6c8c0;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            margin: 12px 13px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #d5e7e1;
+            padding: 14px 15px;
+            margin: 3px 0;
+            border-radius: 11px;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: #11796b;
+            color: white;
+        }
+
+        .nav-link.active {
+            border-right: 4px solid var(--lime);
+        }
+
+        .nav-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding-top: 25px;
+        }
+
+        /* MAIN */
+
+        .main {
+            flex: 1;
+            min-width: 0;
+            padding: 0 25px 30px;
+        }
+
+        /* TOPBAR */
+
+        .topbar {
+            height: 75px;
+            background: white;
+            border-radius: 0 0 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            margin-bottom: 27px;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            max-width: 480px;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dff3e9;
+            display: grid;
+            place-items: center;
+            color: var(--green);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .profile-text strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .profile-text small {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* PAGE HEADING */
+
+        .welcome {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            gap: 15px;
+        }
+
+        .welcome h1 {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .welcome p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .date-badge {
+            background: white;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* STATISTICS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 17px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            min-height: 130px;
+            position: relative;
+            transition: .2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-title {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .stat-icon {
+            height: 34px;
+            width: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: #e5f8f2;
+            color: var(--green);
+        }
+
+        .stat-card h2 {
+            font-size: 29px;
+            margin-top: 12px;
+        }
+
+        .stat-card small {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .stat-card.featured {
+            background: linear-gradient(135deg, var(--dark), #16a889);
+            color: white;
+        }
+
+        .stat-card.featured .stat-title,
+        .stat-card.featured small {
+            color: #d5eee6;
+        }
+
+        .stat-card.featured .stat-icon {
+            background: #ffffff26;
+            color: var(--lime);
+        }
+
+        /* CONTENT GRID */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.7fr 1fr;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 21px;
+            padding: 22px;
+        }
+
+        .card-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            gap: 10px;
+        }
+
+        .card-heading h3 {
+            font-size: 16px;
+        }
+
+        .card-heading p {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .text-link {
+            border: none;
+            background: none;
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* CHART */
+
+        .chart {
+            height: 190px;
+            display: flex;
+            justify-content: space-around;
+            align-items: end;
+            border-bottom: 1px solid var(--border);
+            padding: 15px 5px 0;
+            gap: 15px;
+        }
+
+        .bar-item {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .bar {
+            width: 30px;
+            min-height: 5px;
+            border-radius: 9px 9px 3px 3px;
+            background: linear-gradient(180deg, #20c8a9, #087e6d);
+            transition: height .4s;
+        }
+
+        .bar-item small {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* SAFETY CARD */
+
+        .safety-card {
+            background: white;
+            border-radius: 21px;
+            padding: 23px;
+            margin-bottom: 15px;
+        }
+
+        .safety-card h3 {
+            font-size: 15px;
+            margin-bottom: 13px;
+        }
+
+        .safety-card p {
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .safety-card a {
+            display: inline-block;
+            margin-top: 16px;
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .project-note {
+            background: #e4f5ec;
+            border-radius: 21px;
+            padding: 23px;
+        }
+
+        .project-note h3 {
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .project-note p {
+            color: #68877c;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* REQUEST TABLE */
+
+        .requests-card {
+            background: white;
+            padding: 23px;
+            border-radius: 21px;
+            overflow: hidden;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        th {
+            text-align: left;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 14px 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 15px 10px;
+            border-bottom: 1px solid #f0f3f2;
+            font-size: 12px;
+        }
+
+        td strong {
+            color: var(--text);
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .Pending {
+            background: #fff4df;
+            color: #bd8123;
+        }
+
+        .Approved {
+            background: #e1f8ed;
+            color: #16885e;
+        }
+
+        .Rejected {
+            background: #ffe9e9;
+            color: #c84c4c;
+        }
+
+        .Completed {
+            background: #e5efff;
+            color: #477bc4;
+        }
+
+        .action-btn {
+            border: none;
+            border-radius: 7px;
+            padding: 7px 9px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 2px;
+        }
+
+        .approve-btn {
+            background: #dff7eb;
+            color: #14835b;
+        }
+
+        .reject-btn {
+            background: #ffe7e7;
+            color: #c44747;
+        }
+
+        .complete-btn {
+            background: #e5efff;
+            color: #477bc4;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 35px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .message {
+            margin: 12px 0;
+            font-size: 13px;
+            color: var(--green);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 1050px) {
+            .sidebar {
+                width: 205px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 700px) {
+            .dashboard {
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .brand {
+                padding-bottom: 15px;
+            }
+
+            .sidebar nav {
+                display: flex;
+                overflow-x: auto;
+                gap: 5px;
+            }
+
+            .menu-label,
+            .sidebar-bottom {
+                display: none;
+            }
+
+            .nav-link {
+                white-space: nowrap;
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .main {
+                padding: 0 12px 20px;
+            }
+
+            .topbar {
+                height: 65px;
+                padding: 0 15px;
+            }
+
+            .welcome h1 {
+                font-size: 20px;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 14px;
+            }
+
+            .stat-card h2 {
+                font-size: 24px;
+            }
+
+            .date-badge {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <a href="index.html" class="brand">
+            <span class="brand-icon">✚</span>
+            <span>Medi<span>Cycle</span></span>
+        </a>
+
+        <div class="menu-label">MAIN MENU</div>
+
+        <nav>
+
+            <a href="admin.html" class="nav-link active">
+                <span class="nav-icon">▦</span>
+                Dashboard
+            </a>
+
+            <a href="#requests" class="nav-link">
+                <span class="nav-icon">▤</span>
+                Medicine Requests
+            </a>
+
+            <a href="#requests" class="nav-link">
+                <span class="nav-icon">✓</span>
+                Review & Approval
+            </a>
+
+            <div class="menu-label">PROJECT</div>
+
+            <a href="centres.html" class="nav-link">
+                <span class="nav-icon">⌖</span>
+                Collection Centres
+            </a>
+
+            <a href="safety.html" class="nav-link">
+                <span class="nav-icon">♡</span>
+                Safety Guide
+            </a>
+
+            <a href="index.html" class="nav-link">
+                <span class="nav-icon">↗</span>
+                View Website
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-link" id="logoutButton">
+                <span class="nav-icon">⇥</span>
+                Logout
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+                <span>⌕</span>
+                <input type="search" id="searchInput"
+                    placeholder="Search medicine requests...">
+            </div>
+
+            <div class="admin-profile">
+                <div class="profile-icon">✚</div>
+                <div class="profile-text">
+                    <strong>MediCycle</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+            <div>
+                <h1>Welcome back, Admin 👋</h1>
+                <p>Here is the latest overview of medicine requests.</p>
+            </div>
+
+            <div class="date-badge" id="currentDate"></div>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats">
+
+            <article class="stat-card featured">
+                <div class="stat-top">
+                    <span class="stat-title">Total Requests</span>
+                    <span class="stat-icon">▤</span>
+                </div>
+                <h2 id="totalCount">0</h2>
+                <small>All submitted records</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-title">Pending Review</span>
+                    <span class="stat-icon">◷</span>
+                </div>
+                <h2 id="pendingCount">0</h2>
+                <small>Awaiting review</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-title">Approved</span>
+                    <span class="stat-icon">✓</span>
+                </div>
+                <h2 id="approvedCount">0</h2>
+                <small>Internal status only</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span class="stat-title">Completed</span>
+                    <span class="stat-icon">♧</span>
+                </div>
+                <h2 id="completedCount">0</h2>
+                <small>Marked completed</small>
+            </article>
+
+        </section>
+
+
+        <!-- CHARTS AND SAFETY -->
+
+        <section class="content-grid">
+
+            <article class="card">
+
+                <div class="card-heading">
+                    <div>
+                        <h3>Request Overview</h3>
+                        <p>Current distribution by request status</p>
+                    </div>
+
+                    <button class="text-link" onclick="loadRequests()">
+                        REFRESH ↻
+                    </button>
+                </div>
+
+                <div class="chart">
+
+                    <div class="bar-item">
+                        <div class="bar" id="pendingBar"></div>
+                        <small>Pending</small>
+                    </div>
+
+                    <div class="bar-item">
+                        <div class="bar" id="approvedBar"></div>
+                        <small>Approved</small>
+                    </div>
+
+                    <div class="bar-item">
+                        <div class="bar" id="rejectedBar"></div>
+                        <small>Rejected</small>
+                    </div>
+
+                    <div class="bar-item">
+                        <div class="bar" id="completedBar"></div>
+                        <small>Completed</small>
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <div>
+
+                <article class="safety-card">
+
+                    <h3>♡ Medicine Safety Reminder</h3>
+
+                    <p>
+                        Never distribute prescription medicines directly
+                        to another person. Expired, opened, damaged or
+                        temperature-sensitive medicines need guidance
+                        from an authorized service.
+                    </p>
+
+                    <a href="safety.html">OPEN SAFETY GUIDE →</a>
+
+                </article>
+
+
+                <article class="project-note">
+
+                    <h3>Project Note</h3>
+
+                    <p>
+                        This is an administrative dashboard for a student
+                        awareness project. Only verified, authorized
+                        organizations can decide whether medicines may
+                        be accepted and how they must be handled.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- MEDICINE REQUESTS -->
+
+        <section class="requests-card" id="requests">
+
+            <div class="card-heading">
+
+                <div>
+                    <h3>Recent Medicine Requests</h3>
+                    <p>Latest submissions from the community</p>
+                </div>
+
+                <button class="text-link" onclick="loadRequests()">
+                    REFRESH ↓
+                </button>
+
+            </div>
+
+            <div id="pageMessage" class="message" role="status"></div>
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>DONOR</th>
+                            <th>MEDICINE</th>
+                            <th>CITY</th>
+                            <th>EXPIRY DATE</th>
+                            <th>STATUS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="requestTable">
+
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                Loading medicine requests...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    let allRequests = [];
+
+    // DATE
+
+    document.getElementById("currentDate").textContent =
+        new Date().toLocaleDateString("en-IN", {
+            weekday: "short",
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        });
+
+
+    // SAFE HTML
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]);
+    }
+
+
+    // LOAD REQUESTS FROM MONGODB API
+
+    async function loadRequests() {
+
+        const table = document.getElementById("requestTable");
+        const message = document.getElementById("pageMessage");
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="6" class="empty-state">
+                    Loading requests...
+                </td>
+            </tr>
+        `;
+
+        message.textContent = "";
+
+        try {
+
+            const response = await fetch("/api/medicines", {
+                method: "GET",
+                credentials: "same-origin"
+            });
+
+            if (response.status === 401 || response.status === 403) {
+                throw new Error("Admin session expired. Please log in again.");
+            }
+
+            if (!response.ok) {
+                throw new Error("Unable to load medicine requests.");
+            }
+
+            const result = await response.json();
+
+            // Supports either an array or an object containing medicines.
+            const records = Array.isArray(result)
+                ? result
+                : (result.medicines || result.requests || result.data || []);
+
+            if (!Array.isArray(records)) {
+                throw new Error("Unexpected API response format.");
+            }
+
+            allRequests = records;
+
+            updateStatistics();
+            renderRequests(allRequests);
+
+        } catch (error) {
+
+            table.innerHTML = `
+                <tr>
+                    <td colspan="6" class="empty-state">
+                        ${escapeHTML(error.message)}
+                    </td>
+                </tr>
+            `;
+
+            message.textContent = error.message;
+
+        }
+
+    }
+
+
+    // UPDATE STATISTICS
+
+    function updateStatistics() {
+
+        const count = status =>
+            allRequests.filter(item => item.status === status).length;
+
+        document.getElementById("totalCount").textContent =
+            allRequests.length;
+
+        document.getElementById("pendingCount").textContent =
+            count("Pending");
+
+        document.getElementById("approvedCount").textContent =
+            count("Approved");
+
+        document.getElementById("completedCount").textContent =
+            count("Completed");
+
+        const maximum = Math.max(
+            count("Pending"),
+            count("Approved"),
+            count("Rejected"),
+            count("Completed"),
+            1
+        );
+
+        ["Pending", "Approved", "Rejected", "Completed"].forEach(status => {
+
+            const bar = document.getElementById(
+                status.toLowerCase() + "Bar"
+            );
+
+            const height = Math.max(
+                5,
+                (count(status) / maximum) * 100
+            );
+
+            bar.style.height = height + "%";
+
+        });
+
+    }
+
+
+    // DISPLAY REQUESTS
+
+    function renderRequests(records) {
+
+        const table = document.getElementById("requestTable");
+
+        if (!records.length) {
+
+            table.innerHTML = `
+                <tr>
+                    <td colspan="6" class="empty-state">
+                        No medicine requests found.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+        table.innerHTML = records.map(item => {
+
+            const status = [
+                "Pending",
+                "Approved",
+                "Rejected",
+                "Completed"
+            ].includes(item.status) ? item.status : "Pending";
+
+            const id = escapeHTML(item._id || item.id);
+
+            const date = item.expiryDate
+                ? new Date(item.expiryDate).toLocaleDateString("en-IN")
+                : "Not provided";
+
+            let actions = "";
+
+            if (status === "Pending") {
+                actions = `
+                    <button class="action-btn approve-btn"
+                        onclick="updateStatus('${id}', 'Approved')">
+                        Approve
+                    </button>
+
+                    <button class="action-btn reject-btn"
+                        onclick="updateStatus('${id}', 'Rejected')">
+                        Reject
+                    </button>
+                `;
+            }
+
+            if (status === "Approved") {
+                actions = `
+                    <button class="action-btn complete-btn"
+                        onclick="updateStatus('${id}', 'Completed')">
+                        Complete
+                    </button>
+                `;
+            }
+
+            return `
+                <tr>
+
+                    <td>
+                        <strong>${escapeHTML(item.fullName || "Donor")}</strong>
+                    </td>
+
+                    <td>
+                        ${escapeHTML(item.medicineName || "Not provided")}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(item.city || "Not provided")}
+                    </td>
+
+                    <td>${escapeHTML(date)}</td>
+
+                    <td>
+                        <span class="status ${status}">
+                            ${status}
+                        </span>
+                    </td>
+
+                    <td>${actions || "—"}</td>
+
+                </tr>
+            `;
+
+        }).join("");
+
+    }
+
+
+    // UPDATE STATUS
+
+    async function updateStatus(id, status) {
+
+        if (!confirm(`Change request status to ${status}?`)) {
+            return;
+        }
+
+        const message = document.getElementById("pageMessage");
+
+        try {
+
+            const response = await fetch(
+                `/api/medicines/${encodeURIComponent(id)}/status`,
+                {
+                    method: "PATCH",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    credentials: "same-origin",
+
+                    body: JSON.stringify({ status })
+                }
+            );
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                throw new Error(
+                    result.message || "Could not update request status."
+                );
+            }
+
+            message.textContent = "Request status updated successfully.";
+
+            await loadRequests();
+
+        } catch (error) {
+
+            message.textContent = error.message;
+
+        }
+
+    }
+
+
+    // SEARCH
+
+    document.getElementById("searchInput").addEventListener(
+        "input",
+        function () {
+
+            const query = this.value.toLowerCase().trim();
+
+            const filtered = allRequests.filter(item => {
+
+                return [
+                    item.fullName,
+                    item.medicineName,
+                    item.city,
+                    item.status
+                ].some(value =>
+                    String(value || "").toLowerCase().includes(query)
+                );
+
+            });
+
+            renderRequests(filtered);
+
+        }
+    );
+
+
+    // LOGOUT
+
+    document.getElementById("logoutButton").addEventListener(
+        "click",
+        async function (event) {
+
+            event.preventDefault();
+
+            if (!confirm("Are you sure you want to logout?")) {
+                return;
+            }
+
+            try {
+
+                const response = await fetch("/api/admin/logout", {
+                    method: "POST",
+                    credentials: "same-origin"
+                });
+
+                if (!response.ok) {
+                    throw new Error("Logout failed.");
+                }
+
+                window.location.href = "admin-login.html";
+
+            } catch (error) {
+
+                alert(error.message);
+
+            }
+
+        }
+    );
+
+
+    // INITIAL LOAD
+
+    loadRequests();
+
+    // Refresh data periodically.
+    setInterval(loadRequests, 60000);
+
+</script>
+
+</body>
+</html>

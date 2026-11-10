@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Submit a medicine collection or disposal guidance request to MediCycle.">
+    <meta name="theme-color" content="#f5f6ee">
+
+    <title>Submit Medicine Details | MediCycle</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f6ee;
+            font-family: 'DM Sans', sans-serif;
+            color: #244c42;
+        }
+
+        /* HEADER */
+
+        .navbar {
+            width: 100%;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 40px;
+            gap: 25px;
+            background: #ffffff;
+            border-radius: 0 0 18px 18px;
+        }
+
+        /* MEDICYCLE SVG LOGO */
+
+        .navbar .brand {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .mc-logo {
+            width: 260px;
+            height: 78px;
+            display: block;
+        }
+
+        /* NAVIGATION */
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            color: #164b40;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .navbar nav a:hover {
+            color: #70ad45;
+        }
+
+        /* FORM PAGE */
+
+        .content-page {
+            max-width: 1000px;
+            margin: 55px auto;
+            padding: 40px;
+        }
+
+        .content-page h1 {
+            color: #164b40;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .content-page > p {
+            color: #718078;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        /* FORM CARD */
+
+        #medicineForm {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(20, 65, 50, 0.06);
+        }
+
+        #medicineForm h2 {
+            color: #164b40;
+            margin-top: 35px;
+            margin-bottom: 22px;
+            font-size: 23px;
+        }
+
+        #medicineForm h2:first-child {
+            margin-top: 0;
+        }
+
+        #medicineForm label {
+            display: block;
+            margin-bottom: 22px;
+            font-weight: 600;
+            color: #244c42;
+        }
+
+        #medicineForm input:not([type="checkbox"]),
+        #medicineForm textarea,
+        #medicineForm select {
+            display: block;
+            width: 100%;
+            margin-top: 9px;
+            padding: 14px;
+            border: 1px solid #d4e1d7;
+            border-radius: 9px;
+            background: #ffffff;
+            font-family: inherit;
+            font-size: 15px;
+            color: #263d35;
+        }
+
+        #medicineForm textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        #medicineForm input:focus,
+        #medicineForm textarea:focus,
+        #medicineForm select:focus {
+            outline: none;
+            border-color: #70ad45;
+            box-shadow: 0 0 0 3px rgba(112, 173, 69, 0.12);
+        }
+
+        /* CONSENT CHECKBOXES */
+
+        #medicineForm .consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        #medicineForm .consent input {
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        /* SUBMIT BUTTON */
+
+        #medicineForm .btn-primary {
+            display: inline-block;
+            padding: 15px 32px;
+            border: none;
+            border-radius: 30px;
+            background: #07564c;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #medicineForm .btn-primary:hover {
+            background: #438b45;
+        }
+
+        #formMessage {
+            margin-top: 20px;
+        }
+
+        /* SAFETY NOTE */
+
+        .form-safety-note {
+            background: #eef5eb;
+            border-left: 4px solid #70ad45;
+            padding: 15px 18px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            color: #315b4c;
+            font-size: 14px;
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                min-height: 85px;
+                padding: 10px 18px;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .mc-logo {
+                width: 190px;
+                height: 58px;
+            }
+
+            .navbar nav {
+                width: 100%;
+                justify-content: center;
+                gap: 22px;
+                flex-wrap: wrap;
+                padding-bottom: 10px;
+            }
+
+            .content-page {
+                margin: 30px auto;
+                padding: 20px;
+            }
+
+            .content-page h1 {
+                font-size: 28px;
+            }
+
+            #medicineForm {
+                padding: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .mc-logo {
+                width: 165px;
+                height: 52px;
+            }
+
+            .navbar nav {
+                justify-content: flex-start;
+                gap: 15px;
+            }
+
+            .navbar nav a {
+                font-size: 12px;
+            }
+
+            .content-page {
+                padding: 15px;
+            }
+
+            #medicineForm {
+                padding: 18px;
+            }
+
+            .content-page h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="navbar">
+
+        <a href="/index.html" class="brand" aria-label="MediCycle Home">
+
+            <svg class="mc-logo"
+                viewBox="0 0 300 90"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="MediCycle">
+
+                <rect width="300" height="90" rx="18" fill="#064E46"/>
+
+                <circle cx="45" cy="45" r="32" fill="#B5F36B"/>
+
+                <rect x="38" y="24" width="14" height="42" fill="#064E46"/>
+                <rect x="24" y="38" width="42" height="14" fill="#064E46"/>
+
+                <text x="88" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#FFFFFF">Medi</text>
+
+                <text x="158" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#B5F36B">Cycle</text>
+
+            </svg>
+
+        </a>
+
+        <nav id="navigation">
+
+            <a href="/index.html">Home</a>
+
+            <a href="/about.html">About Us</a>
+
+            <a href="/centres.html">Collection Centres</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN FORM -->
+
+    <main class="content-page">
+
+        <h1>Medicine Collection Request</h1>
+
+        <p>
+            Complete this form to request a review. Submission does not
+            guarantee collection, acceptance, or reuse.
+        </p>
+
+        <div class="form-safety-note">
+            <strong>Important:</strong>
+            Never share prescription medicines directly with another person.
+            Expired, opened or damaged medicines must be handled according
+            to appropriate disposal guidance.
+        </div>
+
+        <form id="medicineForm">
+
+            <!-- PERSONAL INFORMATION -->
+
+            <h2>Personal Information</h2>
+
+            <label>
+                Full Name *
+
+                <input
+                    type="text"
+                    name="fullName"
+                    autocomplete="name"
+                    required>
+            </label>
+
+            <label>
+                Full Address *
+
+                <textarea
+                    name="address"
+                    autocomplete="street-address"
+                    required></textarea>
+            </label>
+
+            <label>
+                Mobile Number *
+
+                <input
+                    type="tel"
+                    name="mobile"
+                    inputmode="numeric"
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                    placeholder="10-digit mobile number"
+                    required>
+            </label>
+
+            <label>
+                Email Address
+
+                <input
+                    type="email"
+                    name="email"
+                    autocomplete="email">
+            </label>
+
+            <label>
+                City *
+
+                <input
+                    type="text"
+                    name="city"
+                    required>
+            </label>
+
+
+            <!-- MEDICINE INFORMATION -->
+
+            <h2>Medicine Information</h2>
+
+            <label>
+                Medicine Name *
+
+                <input
+                    type="text"
+                    name="medicineName"
+                    required>
+            </label>
+
+            <label>
+                Medicine Type *
+
+                <select name="medicineType" required>
+                    <option value="">Select type</option>
+                    <option>Tablet</option>
+                    <option>Capsule</option>
+                    <option>Syrup</option>
+                    <option>Cream</option>
+                    <option>Drops</option>
+                    <option>Other</option>
+                </select>
+            </label>
+
+            <label>
+                Reason for Collection *
+
+                <select name="reason" required>
+                    <option value="">Select reason</option>
+                    <option>Medicine left after treatment</option>
+                    <option>Doctor changed treatment</option>
+                    <option>Medicine no longer required</option>
+                    <option>Medicine was never used</option>
+                    <option>Other</option>
+                </select>
+            </label>
+
+            <label>
+                Quantity and Unit *
+
+                <input
+                    type="text"
+                    name="quantity"
+                    placeholder="e.g. 2 unopened strips"
+                    required>
+            </label>
+
+            <label>
+                Expiry Date *
+
+                <input
+                    type="date"
+                    name="expiryDate"
+                    required>
+            </label>
+
+            <label>
+                Packaging Condition *
+
+                <select name="packaging" required>
+                    <option value="">Select condition</option>
+                    <option>Unopened and sealed</option>
+                    <option>Opened package</option>
+                    <option>Damaged packaging</option>
+                    <option>Packaging unavailable</option>
+                </select>
+            </label>
+
+            <label>
+                Doctor's Prescription (if applicable)
+
+                <input
+                    type="file"
+                    name="prescription"
+                    accept=".pdf,.jpg,.jpeg,.png">
+            </label>
+
+            <label>
+                Medicine Packaging Photograph *
+
+                <input
+                    type="file"
+                    name="medicinePhoto"
+                    accept=".jpg,.jpeg,.png"
+                    required>
+            </label>
+
+
+            <!-- COLLECTION PREFERENCES -->
+
+            <h2>Collection Preferences</h2>
+
+            <label>
+                Collection Preference *
+
+                <select name="collectionMethod" required>
+
+                    <option value="">Select preference</option>
+
+                    <option value="dropoff">
+                        Verified centre drop-off
+                    </option>
+
+                    <option value="guidance">
+                        Request disposal guidance
+                    </option>
+
+                </select>
+            </label>
+
+            <label>
+                Additional Information
+
+                <textarea name="additionalInfo"></textarea>
+            </label>
+
+
+            <!-- CONSENT -->
+
+            <label class="consent">
+
+                <input
+                    type="checkbox"
+                    name="accuracyConsent"
+                    required>
+
+                <span>
+                    I confirm that the information I entered is accurate.
+                </span>
+
+            </label>
+
+            <label class="consent">
+
+                <input
+                    type="checkbox"
+                    name="reviewConsent"
+                    required>
+
+                <span>
+                    I understand that the request must be reviewed and does not
+                    guarantee acceptance or reuse.
+                </span>
+
+            </label>
+
+            <label class="consent">
+
+                <input
+                    type="checkbox"
+                    name="privacyConsent"
+                    required>
+
+                <span>
+                    I consent to the use of my information to manage this request
+                    as described in the project's privacy notice.
+                </span>
+
+            </label>
+
+
+            <!-- SUBMIT BUTTON -->
+
+            <button type="submit" class="btn-primary">
+                Submit Request
+            </button>
+
+            <p id="formMessage" role="status"></p>
+
+        </form>
+
+    </main>
+
+
+    <!-- EXISTING FORM JAVASCRIPT -->
+
+    <script src="/form.js"></script>
+
+</body>
+
+</html>

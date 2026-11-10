@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Learn about MediCycle, our mission and objectives for responsible medicine handling and safe disposal awareness.">
+
+    <meta name="theme-color" content="#f5f6ee">
+
+    <title>About MediCycle | Every Medicine Matters</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: #f5f6ee;
+            color: #244c42;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* HEADER */
+
+        .navbar {
+            width: 100%;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 35px;
+            gap: 25px;
+            background: #ffffff;
+            border-radius: 0 0 18px 18px;
+        }
+
+        /* MEDICYCLE LOGO */
+
+        .navbar .brand {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .mc-logo {
+            width: 250px;
+            height: 75px;
+            display: block;
+        }
+
+        /* NAVIGATION */
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            color: #164b40;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .navbar nav a:hover {
+            color: #70ad45;
+        }
+
+        /* ABOUT PAGE */
+
+        .about-page {
+            width: 100%;
+            max-width: 1100px;
+            margin: 55px auto;
+            padding: 30px;
+        }
+
+        .about-hero {
+            background: #064e46;
+            color: #ffffff;
+            padding: 55px 45px;
+            border-radius: 22px;
+            margin-bottom: 35px;
+        }
+
+        .about-label {
+            display: inline-block;
+            color: #c8f29a;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+
+        .about-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 45px;
+            line-height: 1.2;
+            margin: 0 0 20px;
+        }
+
+        .about-hero h1 em {
+            color: #c8f29a;
+        }
+
+        .about-hero p {
+            max-width: 720px;
+            color: #e3eee7;
+            line-height: 1.8;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* SECTION */
+
+        .about-section {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 25px rgba(20, 65, 50, 0.04);
+        }
+
+        .about-section h2 {
+            color: #164b40;
+            font-size: 26px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .about-section p {
+            color: #718078;
+            line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+
+        /* OBJECTIVES */
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .objective-card {
+            background: #f5f8f1;
+            border: 1px solid #e5eee3;
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .objective-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: #e2f2d8;
+            color: #07564c;
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .objective-card h3 {
+            color: #164b40;
+            font-size: 17px;
+            margin: 0 0 9px;
+        }
+
+        .objective-card p {
+            color: #718078;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* IMPORTANT NOTICE */
+
+        .about-notice {
+            background: #eef5eb;
+            border-left: 4px solid #70ad45;
+            padding: 22px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        .about-notice strong {
+            color: #164b40;
+        }
+
+        .about-notice p {
+            color: #526d60;
+            line-height: 1.7;
+            margin: 8px 0 0;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+
+        .about-footer {
+            background: #064e46;
+            color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .about-footer p {
+            color: #d5e6dd;
+            font-size: 13px;
+            margin: 10px 0 0;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                min-height: 85px;
+                padding: 10px 18px;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .mc-logo {
+                width: 190px;
+                height: 58px;
+            }
+
+            .navbar nav {
+                width: 100%;
+                justify-content: flex-start;
+                gap: 20px;
+                flex-wrap: wrap;
+                padding-bottom: 10px;
+            }
+
+            .about-page {
+                margin: 30px auto;
+                padding: 18px;
+            }
+
+            .about-hero {
+                padding: 35px 25px;
+            }
+
+            .about-hero h1 {
+                font-size: 34px;
+            }
+
+            .about-section {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .mc-logo {
+                width: 165px;
+                height: 52px;
+            }
+
+            .navbar nav {
+                gap: 14px;
+            }
+
+            .navbar nav a {
+                font-size: 12px;
+            }
+
+            .about-page {
+                padding: 14px;
+            }
+
+            .about-hero {
+                padding: 28px 20px;
+            }
+
+            .about-hero h1 {
+                font-size: 29px;
+            }
+
+            .objectives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section {
+                padding: 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="navbar">
+
+        <a href="/index.html" class="brand" aria-label="MediCycle Home">
+
+            <svg class="mc-logo"
+                viewBox="0 0 300 90"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="MediCycle">
+
+                <rect width="300" height="90" rx="18" fill="#064E46"/>
+
+                <circle cx="45" cy="45" r="32" fill="#B5F36B"/>
+
+                <rect x="38" y="24" width="14" height="42" fill="#064E46"/>
+                <rect x="24" y="38" width="42" height="14" fill="#064E46"/>
+
+                <text x="88" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#FFFFFF">Medi</text>
+
+                <text x="158" y="55"
+                    font-family="Arial, sans-serif"
+                    font-size="32"
+                    font-weight="bold"
+                    fill="#B5F36B">Cycle</text>
+
+            </svg>
+
+        </a>
+
+
+        <nav id="navigation">
+
+            <a href="/index.html">Home</a>
+
+            <a href="/submit-medicine.html">Submit Medicine</a>
+
+            <a href="/centres.html">Collection Centres</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN ABOUT PAGE -->
+
+    <main class="about-page">
+
+
+        <!-- HERO -->
+
+        <section class="about-hero">
+
+            <span class="about-label">
+                ABOUT MEDICYCLE
+            </span>
+
+            <h1>
+                Every Medicine Matters.<br>
+                <em>Every Action Counts.</em>
+            </h1>
+
+            <p>
+                MediCycle is a college field project that promotes responsible
+                medicine handling and awareness about unused medicine disposal.
+                Our aim is to encourage informed decisions, reduce medicine
+                wastage and protect the environment.
+            </p>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section class="about-section">
+
+            <h2>Who We Are</h2>
+
+            <p>
+                MediCycle is a student-led initiative focused on medicine-waste
+                awareness. Many medicines remain unused after treatment.
+                Improper disposal can create environmental risks. Through this
+                platform, we aim to educate people about responsible handling
+                and appropriate disposal guidance.
+            </p>
+
+        </section>
+
+
+        <!-- MISSION -->
+
+        <section class="about-section">
+
+            <h2>Our Mission</h2>
+
+            <p>
+                We aim to help people learn about safe disposal options and
+                locate participating collection services. We want to spread
+                awareness about medicine wastage and encourage people to seek
+                guidance from appropriately authorized organizations.
+            </p>
+
+        </section>
+
+
+        <!-- OBJECTIVES -->
+
+        <section class="about-section">
+
+            <h2>Our Objectives</h2>
+
+            <div class="objectives-grid">
+
+                <article class="objective-card">
+
+                    <div class="objective-icon">♡</div>
+
+                    <h3>Medicine Waste Awareness</h3>
+
+                    <p>
+                        Promote awareness about unused medicines and
+                        the problems caused by improper disposal.
+                    </p>
+
+                </article>
+
+
+                <article class="objective-card">
+
+                    <div class="objective-icon">♻</div>
+
+                    <h3>Responsible Disposal</h3>
+
+                    <p>
+                        Encourage people to follow appropriate medicine
+                        disposal guidance.
+                    </p>
+
+                </article>
+
+
+                <article class="objective-card">
+
+                    <div class="objective-icon">▤</div>
+
+                    <h3>Online Request Facility</h3>
+
+                    <p>
+                        Provide an online form to submit medicine details
+                        for review and guidance.
+                    </p>
+
+                </article>
+
+
+                <article class="objective-card">
+
+                    <div class="objective-icon">⌖</div>
+
+                    <h3>Collection Information</h3>
+
+                    <p>
+                        Help people find verified information about
+                        participating collection services.
+                    </p>
+
+                </article>
+
+
+                <article class="objective-card">
+
+                    <div class="objective-icon">🌱</div>
+
+                    <h3>Environmental Responsibility</h3>
+
+                    <p>
+                        Spread awareness about protecting the environment
+                        through responsible medicine handling.
+                    </p>
+
+                </article>
+
+
+                <article class="objective-card">
+
+                    <div class="objective-icon">✚</div>
+
+                    <h3>Community Awareness</h3>
+
+                    <p>
+                        Encourage communities to make informed decisions
+                        about medicines they no longer need.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- IMPORTANT NOTICE -->
+
+        <section class="about-section">
+
+            <h2>Our Commitment to Medicine Safety</h2>
+
+            <p>
+                MediCycle is an awareness and request-review platform.
+                It is not a pharmacy or an automatic medicine redistribution
+                service.
+            </p>
+
+            <div class="about-notice">
+
+                <strong>Important Safety Notice</strong>
+
+                <p>
+                    Medicine reuse is not automatically approved by MediCycle.
+                    Never share prescription medicines directly with another
+                    person. Collection, acceptance and disposal must be handled
+                    by an appropriately authorized organization under applicable
+                    regulations.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="about-footer">
+
+        <p>
+            © 2026 MediCycle | College Field Project
+        </p>
+
+        <p>
+            Every Medicine Matters. Collect Responsibly. Dispose Safely.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

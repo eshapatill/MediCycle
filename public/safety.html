@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="MediCycle Medicine Safety Guide - Learn how to store, handle and dispose of unused medicines responsibly.">
+
+    <meta name="theme-color" content="#f5f6ee">
+
+    <title>Medicine Safety Guide | MediCycle</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: #f5f6ee;
+            color: #164b40;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* HEADER */
+
+        .navbar {
+            width: 100%;
+            min-height: 100px;
+            background: #ffffff;
+            padding: 12px 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+            border-bottom: 1px solid #e9eee7;
+        }
+
+        /* MEDICYCLE ORIGINAL LOGO */
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .brand img {
+            width: 260px;
+            height: 78px;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* NAVIGATION */
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .navbar nav a {
+            color: #164b40;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        .navbar nav a:hover {
+            color: #8acb49;
+        }
+
+        .navbar nav a.active {
+            background: #eaf5ed;
+            padding: 12px 17px;
+            border-radius: 25px;
+        }
+
+        .nav-button {
+            background: #ffffff;
+            border: 1px solid #397b64;
+            color: #164b40;
+
+            padding: 12px 22px;
+            border-radius: 30px;
+
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .nav-button:hover {
+            background: #064e46;
+            color: white;
+        }
+
+        /* MAIN CONTAINER */
+
+        .safety-container {
+            max-width: 1150px;
+            width: calc(100% - 50px);
+            margin: 45px auto;
+        }
+
+        /* HERO SECTION */
+
+        .safety-hero {
+            background: linear-gradient(120deg, #064e46, #168b72);
+            color: white;
+
+            padding: 50px;
+            border-radius: 25px;
+
+            position: relative;
+            overflow: hidden;
+
+            margin-bottom: 35px;
+        }
+
+        .safety-hero::after {
+            content: "✚";
+            position: absolute;
+            right: 65px;
+            top: 20px;
+
+            font-size: 180px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.07);
+        }
+
+        .eyebrow {
+            color: #b5f36b;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .safety-hero h1 {
+            font-size: 42px;
+            margin: 15px 0;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .safety-hero h1 span {
+            color: #b5f36b;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .safety-hero p {
+            max-width: 650px;
+            color: #e0f0e9;
+            font-size: 15px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* SECTION TITLE */
+
+        .section-title {
+            margin: 40px 0 22px;
+        }
+
+        .section-title small {
+            color: #26977b;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 11px;
+        }
+
+        .section-title h2 {
+            font-size: 27px;
+            margin-top: 8px;
+        }
+
+        /* SAFETY CARDS */
+
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .safety-card {
+            background: white;
+            padding: 28px;
+            border-radius: 20px;
+            border: 1px solid #e8eee8;
+            transition: 0.25s;
+        }
+
+        .safety-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(20, 70, 55, 0.08);
+        }
+
+        .safety-icon {
+            width: 52px;
+            height: 52px;
+
+            display: grid;
+            place-items: center;
+
+            background: #e6f5eb;
+            color: #168b72;
+
+            border-radius: 15px;
+            font-size: 25px;
+            margin-bottom: 18px;
+        }
+
+        .safety-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .safety-card p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #718078;
+        }
+
+        /* WARNING SECTION */
+
+        .warning-box {
+            margin-top: 30px;
+            background: #fff7e7;
+            border-left: 5px solid #e4a83b;
+            padding: 25px;
+            border-radius: 14px;
+        }
+
+        .warning-box h3 {
+            color: #9a6816;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .warning-box p {
+            color: #816d4b;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* BOTTOM CTA */
+
+        .safety-cta {
+            background: #e4f3e9;
+            padding: 35px;
+            border-radius: 20px;
+            margin-top: 35px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .safety-cta h2 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .safety-cta p {
+            color: #718078;
+            font-size: 13px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #064e46;
+            color: white;
+
+            padding: 14px 23px;
+            border-radius: 30px;
+
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .cta-button:hover {
+            background: #168b72;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #064e46;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .footer .brand {
+            justify-content: center;
+        }
+
+        .footer p {
+            color: #c6ded5;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media(max-width: 850px) {
+
+            .navbar {
+                padding: 12px 20px;
+                flex-wrap: wrap;
+            }
+
+            .navbar nav {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .nav-button {
+                display: none;
+            }
+
+            .safety-hero h1 {
+                font-size: 34px;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            .navbar {
+                gap: 12px;
+            }
+
+            .brand img {
+                width: 190px;
+                height: 60px;
+            }
+
+            .navbar nav {
+                width: 100%;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 5px;
+            }
+
+            .safety-container {
+                width: calc(100% - 24px);
+                margin: 25px auto;
+            }
+
+            .safety-hero {
+                padding: 30px 22px;
+            }
+
+            .safety-hero h1 {
+                font-size: 29px;
+            }
+
+            .safety-hero p {
+                font-size: 13px;
+            }
+
+            .safety-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .safety-card {
+                padding: 22px;
+            }
+
+            .safety-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-title h2 {
+                font-size: 23px;
+            }
+
+            .footer {
+                padding: 25px 15px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="navbar">
+
+        <a href="/index.html" class="brand">
+            <img src="/medicycle-logo.svg" alt="MediCycle Logo">
+        </a>
+
+        <nav id="navigation">
+
+            <a href="/index.html">Home</a>
+
+            <a href="/about.html">About Us</a>
+
+            <a href="/safety.html" class="active">Safety Guide</a>
+
+            <a href="/centres.html">Collection Centres</a>
+
+            <a href="/login.html">Donor Login</a>
+
+        </nav>
+
+        <a href="/submit-medicine.html" class="nav-button">
+            Submit a Request ↗
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="safety-container">
+
+        <!-- HERO -->
+
+        <section class="safety-hero">
+
+            <span class="eyebrow">
+                MEDICYCLE · MEDICINE AWARENESS
+            </span>
+
+            <h1>
+                Medicine Safety<br>
+                <span>Starts With You.</span>
+            </h1>
+
+            <p>
+                Medicines help us recover, but improper storage and disposal
+                can create risks for people, animals and the environment.
+                Learn how to handle unused medicines responsibly.
+            </p>
+
+        </section>
+
+
+        <!-- SAFETY GUIDELINES -->
+
+        <div class="section-title">
+
+            <small>IMPORTANT GUIDELINES</small>
+
+            <h2>Follow These Safety Practices</h2>
+
+        </div>
+
+
+        <section class="safety-grid">
+
+            <article class="safety-card">
+
+                <div class="safety-icon">📅</div>
+
+                <h3>1. Check Expiry Dates</h3>
+
+                <p>
+                    Always check the expiry date before using any medicine.
+                    Never use expired medicines or offer them to someone else.
+                </p>
+
+            </article>
+
+
+            <article class="safety-card">
+
+                <div class="safety-icon">🔒</div>
+
+                <h3>2. Store Medicines Safely</h3>
+
+                <p>
+                    Keep medicines in their original packaging and follow
+                    the storage instructions. Keep them away from children
+                    and pets.
+                </p>
+
+            </article>
+
+
+            <article class="safety-card">
+
+                <div class="safety-icon">💊</div>
+
+                <h3>3. Do Not Share Prescription Medicines</h3>
+
+                <p>
+                    Prescription medicines should only be used by the person
+                    for whom they were prescribed. Never give them directly
+                    to another person.
+                </p>
+
+            </article>
+
+
+            <article class="safety-card">
+
+                <div class="safety-icon">♻️</div>
+
+                <h3>4. Dispose of Medicines Responsibly</h3>
+
+                <p>
+                    Do not flush medicines or throw them casually into
+                    household waste. Ask an authorized pharmacy or
+                    appropriate disposal service for instructions.
+                </p>
+
+            </article>
+
+
+            <article class="safety-card">
+
+                <div class="safety-icon">📦</div>
+
+                <h3>5. Check Packaging Condition</h3>
+
+                <p>
+                    Medicines with damaged, leaking or missing packaging
+                    should not be considered suitable for reuse.
+                    Ask an authorized service for guidance.
+                </p>
+
+            </article>
+
+
+            <article class="safety-card">
+
+                <div class="safety-icon">🌡️</div>
+
+                <h3>6. Follow Storage Temperature</h3>
+
+                <p>
+                    Some medicines need refrigeration or specific
+                    temperature conditions. Never assume they are safe
+                    after improper storage.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- WARNING -->
+
+        <section class="warning-box">
+
+            <h3>⚠ Important Safety Notice</h3>
+
+            <p>
+                Do not donate or redistribute prescription medicines
+                directly to another person. Expired, opened, damaged
+                or improperly stored medicines require appropriate
+                disposal guidance. Collection and acceptance decisions
+                must be made by an authorized organization under
+                applicable rules.
+            </p>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <section class="safety-cta">
+
+            <div>
+
+                <h2>Have unused medicines?</h2>
+
+                <p>
+                    Learn about the responsible next steps through MediCycle.
+                </p>
+
+            </div>
+
+            <a href="/submit-medicine.html" class="cta-button">
+                Submit a Request ↗
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <a href="/index.html" class="brand">
+            <img src="/medicycle-logo.svg" alt="MediCycle Logo">
+        </a>
+
+        <p>
+            Every Medicine Matters · Collect Responsibly · Dispose Safely
+        </p>
+
+        <p>
+            © 2026 MediCycle | Student Field Project
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#064e46">
+
+    <title>Create Account | MediCycle</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'DM Sans', sans-serif;
+            background: #eaf2e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            overflow-x: hidden;
+            color: #123f36;
+        }
+
+        .bg-shape {
+            position: fixed;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .shape-one {
+            width: 550px;
+            height: 550px;
+            background: #c8e7c0;
+            top: -280px;
+            left: -150px;
+        }
+
+        .shape-two {
+            width: 500px;
+            height: 500px;
+            background: #b6d9c3;
+            bottom: -300px;
+            right: -150px;
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 1250px;
+            min-height: 720px;
+            background: #ffffff;
+            border-radius: 28px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 25px 70px rgba(15, 67, 54, 0.13);
+        }
+
+        /* LEFT IMAGE */
+
+        .register-visual {
+            position: relative;
+            min-height: 720px;
+            background: #064e46;
+            overflow: hidden;
+        }
+
+        .register-visual > img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .visual-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(4, 65, 55, 0.18) 0%,
+                rgba(4, 65, 55, 0.25) 35%,
+                rgba(4, 65, 55, 0.94) 100%
+            );
+        }
+
+        /* LOGO */
+
+        .register-brand {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 2;
+            display: block;
+        }
+
+        .mc-logo {
+            width: 230px;
+            height: 69px;
+            display: block;
+        }
+
+        /* LEFT TEXT */
+
+        .visual-content {
+            position: absolute;
+            z-index: 2;
+            bottom: 45px;
+            left: 40px;
+            right: 35px;
+            color: #ffffff;
+        }
+
+        .visual-tag {
+            display: inline-block;
+            padding: 9px 15px;
+            border: 1px solid rgba(181, 243, 107, 0.6);
+            background: rgba(181, 243, 107, 0.15);
+            border-radius: 30px;
+            color: #d7f7a5;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+            margin-bottom: 20px;
+        }
+
+        .visual-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 4vw, 49px);
+            line-height: 1.2;
+            margin-bottom: 17px;
+        }
+
+        .visual-content h1 span {
+            color: #b5f36b;
+        }
+
+        .visual-content p {
+            color: #e0eee7;
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 420px;
+        }
+
+        .visual-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 28px;
+            color: #d9eddf;
+            font-size: 12px;
+        }
+
+        .visual-footer span {
+            color: #b5f36b;
+            font-size: 18px;
+        }
+
+        /* RIGHT FORM */
+
+        .register-form-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 48px 75px;
+            background: #ffffff;
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 27px;
+        }
+
+        .small-label {
+            display: block;
+            color: #6b9d73;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text h2 {
+            font-size: 34px;
+            color: #123f36;
+            margin-bottom: 9px;
+        }
+
+        .welcome-text p {
+            color: #829087;
+            font-size: 14px;
+        }
+
+        /* INPUTS */
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #31574a;
+            margin-bottom: 8px;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            background: #f1f6f1;
+            border: 1px solid #e0eae0;
+            border-radius: 14px;
+            padding: 0 15px;
+            transition: 0.2s;
+        }
+
+        .input-box:focus-within {
+            border-color: #75ae70;
+            box-shadow: 0 0 0 3px rgba(117, 174, 112, 0.12);
+        }
+
+        .input-icon {
+            color: #72967c;
+            font-size: 17px;
+            min-width: 20px;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 49px;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 0 12px;
+            font-family: inherit;
+            font-size: 13px;
+            color: #23483d;
+        }
+
+        .input-box input::placeholder {
+            color: #a0aca4;
+        }
+
+        .toggle-password {
+            border: none;
+            background: transparent;
+            color: #527c64;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 0 8px 8px;
+        }
+
+        /* BUTTON */
+
+        .register-button {
+            width: 100%;
+            height: 54px;
+            border: none;
+            border-radius: 30px;
+            background: #07564c;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.25s;
+        }
+
+        .register-button:hover {
+            background: #438b60;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(7, 86, 76, 0.17);
+        }
+
+        .register-button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #registerMessage {
+            min-height: 20px;
+            margin-top: 12px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* LINKS */
+
+        .login-text {
+            text-align: center;
+            margin-top: 22px;
+            color: #77857b;
+            font-size: 13px;
+        }
+
+        .login-text a {
+            color: #08715c;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #557568;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            color: #07564c;
+        }
+
+        .register-note {
+            text-align: center;
+            color: #a0aaa1;
+            font-size: 10px;
+            margin-top: 20px;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 950px) {
+            body {
+                padding: 20px;
+            }
+
+            .register-container {
+                grid-template-columns: 0.9fr 1.1fr;
+            }
+
+            .register-form-section {
+                padding: 40px 35px;
+            }
+
+            .mc-logo {
+                width: 190px;
+            }
+
+            .visual-content {
+                left: 25px;
+                right: 20px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+            body {
+                padding: 12px;
+            }
+
+            .register-container {
+                display: flex;
+                flex-direction: column;
+                max-width: 460px;
+                min-height: auto;
+                border-radius: 20px;
+            }
+
+            .register-visual {
+                min-height: 280px;
+            }
+
+            .register-visual > img {
+                object-position: center 35%;
+            }
+
+            .register-brand {
+                top: 17px;
+                left: 18px;
+            }
+
+            .mc-logo {
+                width: 170px;
+                height: auto;
+            }
+
+            .visual-content {
+                bottom: 20px;
+                left: 22px;
+                right: 20px;
+            }
+
+            .visual-content h1 {
+                font-size: 28px;
+                margin-bottom: 8px;
+            }
+
+            .visual-content p {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .visual-tag {
+                font-size: 9px;
+                margin-bottom: 9px;
+            }
+
+            .visual-footer {
+                margin-top: 10px;
+                font-size: 10px;
+            }
+
+            .register-form-section {
+                padding: 30px 22px;
+            }
+
+            .welcome-text h2 {
+                font-size: 28px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-shape shape-one"></div>
+    <div class="bg-shape shape-two"></div>
+
+    <main class="register-container">
+
+        <!-- LEFT IMAGE SECTION -->
+
+        <section class="register-visual">
+
+            <img
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=85"
+                alt="Healthcare professional"
+                onerror="this.style.display='none'">
+
+            <div class="visual-overlay"></div>
+
+            <!-- MEDICYCLE LOGO -->
+
+            <a href="/index.html" class="register-brand" aria-label="MediCycle Home">
+
+                <svg class="mc-logo"
+                    viewBox="0 0 300 90"
+                    xmlns="http://www.w3.org/2000/svg"
+                    role="img"
+                    aria-label="MediCycle">
+
+                    <rect width="300" height="90" rx="18" fill="#064E46"/>
+
+                    <circle cx="45" cy="45" r="32" fill="#B5F36B"/>
+
+                    <rect x="38" y="24" width="14" height="42" fill="#064E46"/>
+                    <rect x="24" y="38" width="42" height="14" fill="#064E46"/>
+
+                    <text x="88" y="55"
+                        font-family="Arial, sans-serif"
+                        font-size="32"
+                        font-weight="bold"
+                        fill="#FFFFFF">Medi</text>
+
+                    <text x="158" y="55"
+                        font-family="Arial, sans-serif"
+                        font-size="32"
+                        font-weight="bold"
+                        fill="#B5F36B">Cycle</text>
+
+                </svg>
+
+            </a>
+
+            <div class="visual-content">
+
+                <span class="visual-tag">
+                    JOIN THE MEDICYCLE COMMUNITY
+                </span>
+
+                <h1>
+                    Be a part of<br>
+                    responsible<br>
+                    <span>medicine use.</span>
+                </h1>
+
+                <p>
+                    Create your account, submit medicine requests
+                    and help reduce medicine waste. Together,
+                    let's build a more responsible healthcare community.
+                </p>
+
+                <div class="visual-footer">
+                    <span>✦</span>
+                    Every Medicine Matters
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- RIGHT REGISTRATION FORM -->
+
+        <section class="register-form-section">
+
+            <div class="welcome-text">
+
+                <span class="small-label">
+                    MEDICYCLE DONOR PORTAL
+                </span>
+
+                <h2>Create Account</h2>
+
+                <p>
+                    Join MediCycle to manage your medicine requests.
+                </p>
+
+            </div>
+
+            <form id="registerForm">
+
+                <div class="input-group">
+                    <label for="fullName">Full Name</label>
+
+                    <div class="input-box">
+                        <span class="input-icon">♙</span>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+
+                    <div class="input-box">
+                        <span class="input-icon">✉</span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="mobile">Mobile Number</label>
+
+                    <div class="input-box">
+                        <span class="input-icon">☎</span>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            name="mobile"
+                            placeholder="10-digit mobile number"
+                            inputmode="numeric"
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            autocomplete="tel"
+                            required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="city">City</label>
+
+                    <div class="input-box">
+                        <span class="input-icon">⌖</span>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Enter your city"
+                            autocomplete="address-level2"
+                            required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+
+                    <div class="input-box">
+                        <span class="input-icon">🔒</span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            minlength="8"
+                            autocomplete="new-password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="password">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+
+                    <div class="input-box">
+                        <span class="input-icon">🔒</span>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Re-enter your password"
+                            minlength="8"
+                            autocomplete="new-password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="confirmPassword">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="register-button"
+                    id="registerButton">
+
+                    Create Account →
+                </button>
+
+                <p id="registerMessage" role="status" aria-live="polite"></p>
+
+            </form>
+
+            <div class="login-text">
+                Already have an account?
+                <a href="/login.html">Login Here</a>
+            </div>
+
+            <a href="/index.html" class="home-link">
+                ← Back to Home
+            </a>
+
+            <p class="register-note">
+                MediCycle · Every Medicine Matters · © 2026
+            </p>
+
+        </section>
+
+    </main>
+
+    <script>
+
+        // SHOW / HIDE PASSWORD
+
+        document.querySelectorAll(".toggle-password").forEach(function(button) {
+
+            button.addEventListener("click", function() {
+
+                const input = document.getElementById(
+                    button.getAttribute("data-target")
+                );
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    button.textContent = "Hide";
+                } else {
+                    input.type = "password";
+                    button.textContent = "Show";
+                }
+
+            });
+
+        });
+
+
+        // DONOR REGISTRATION
+
+        const registerForm = document.getElementById("registerForm");
+        const registerMessage = document.getElementById("registerMessage");
+        const registerButton = document.getElementById("registerButton");
+
+        registerForm.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            registerMessage.textContent = "";
+            registerMessage.style.color = "#c0392b";
+
+            const fullName = document.getElementById("fullName").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const mobile = document.getElementById("mobile").value.trim();
+            const city = document.getElementById("city").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password.length < 8) {
+                registerMessage.textContent =
+                    "Password must contain at least 8 characters.";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                registerMessage.textContent =
+                    "Passwords do not match. Please check again.";
+                return;
+            }
+
+            registerButton.disabled = true;
+            registerButton.textContent = "Creating Account...";
+
+            try {
+
+                const response = await fetch("/api/donor/register", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        fullName,
+                        email,
+                        mobile,
+                        city,
+                        password
+                    })
+
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(
+                        result.message || "Unable to create account."
+                    );
+                }
+
+                registerMessage.style.color = "#23834e";
+                registerMessage.textContent =
+                    "Account created successfully! Redirecting to login...";
+
+                registerButton.textContent = "Account Created ✓";
+
+                setTimeout(function() {
+                    window.location.href = "/login.html";
+                }, 1200);
+
+            } catch(error) {
+
+                registerMessage.style.color = "#c0392b";
+                registerMessage.textContent =
+                    error.message || "Something went wrong. Please try again.";
+
+                registerButton.disabled = false;
+                registerButton.textContent = "Create Account →";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
