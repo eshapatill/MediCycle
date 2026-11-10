@@ -1245,3 +1245,63 @@ img {
         height: 55px;
     }
 }
+/* =================================
+   MEDICYCLE MOBILE MENU FIX
+================================= */
+
+@media (max-width: 900px) {
+
+    .mc-nav {
+        position: relative;
+        z-index: 9999;
+        flex-wrap: wrap;
+    }
+
+    .mc-menu {
+        display: block !important;
+        cursor: pointer;
+        color: #064E46;
+        font-size: 30px;
+        padding: 8px;
+        z-index: 10001;
+    }
+
+    .mc-nav nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 12px;
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        z-index: 10000;
+    }
+
+    .mc-nav nav.open {
+        display: flex !important;
+    }
+
+    .mc-nav nav a {
+        display: block;
+        width: 100%;
+        padding: 15px 18px;
+        color: #064E46 !important;
+        font-size: 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #edf1eb;
+    }
+
+    .mc-nav nav a:last-child {
+        border-bottom: none;
+    }
+
+    .mc-nav nav a:hover {
+        background: #edf4ed;
+    }
+}
